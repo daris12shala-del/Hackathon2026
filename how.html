@@ -5,278 +5,261 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FIND IT | How It Works</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-page="how">
 
-<nav class="navbar navbar-expand-lg fixed-top site-nav" data-bs-theme="dark">
-  <div class="container">
-    <a class="navbar-brand brand" href="index.html">
-      🔎 FIND <span>IT.</span>
-    </a>
-
-    <button class="navbar-toggler" type="button"
-      data-bs-toggle="collapse" data-bs-target="#siteMenu"
-      aria-controls="siteMenu" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="siteMenu">
-      <ul class="navbar-nav mx-auto gap-lg-3">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="how.html">How It Works</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="features.html">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="about.html">About</a>
-        </li>
-      </ul>
-
-      <div class="guest-actions d-flex gap-2 my-3 my-lg-0">
-        <button class="btn btn-ghost" type="button"
-          data-bs-toggle="modal" data-bs-target="#loginModal">
-          Log In
-        </button>
-        <button class="btn btn-violet" type="button"
-          data-bs-toggle="modal" data-bs-target="#signupModal">
-          Sign Up
-        </button>
-      </div>
-
-      <div class="user-actions dropdown d-none my-3 my-lg-0">
-        <button class="avatar-btn dropdown-toggle" type="button"
-          data-bs-toggle="dropdown" aria-label="Account">
-          <span class="avatar-letter">U</span>
-          <img class="avatar-img" alt="Profile">
-        </button>
-
-        <div class="dropdown-menu dropdown-menu-end account-menu">
-          <div class="px-3 py-2">
-            <strong class="profile-name"></strong>
-            <small class="profile-email d-block"></small>
-          </div>
-          <div class="dropdown-divider"></div>
-          <button class="dropdown-item" type="button"
-            data-bs-toggle="modal" data-bs-target="#settingsModal">
-            ⚙️ Edit Profile
-          </button>
-          <button class="dropdown-item signout-btn" type="button">
-            ↪ Sign Out
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
+<div id="site-header"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <main>
-  <section class="hero how-hero section-space">
-    <div class="glow glow-a"></div>
-    <div class="glow glow-b"></div>
+
+  <section class="hero inner-hero">
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
 
     <div class="container position-relative">
       <div class="row align-items-center g-5">
+
         <div class="col-lg-6">
-          <p class="eyebrow">✦ THE FIND IT EXPERIENCE</p>
-          <h1 class="hero-title">
-            How does <span>FIND IT work?</span>
-          </h1>
-          <p class="lead-copy">
-            Just three simple steps: record an item,
-            save its location, and look up the location
-            when you need it.
+          <p class="eyebrow animate-down">
+            ✦ THE FIND IT EXPERIENCE
           </p>
-          <div class="d-flex flex-wrap gap-3">
-            <a href="#walkthrough" class="btn btn-violet btn-lg">
-              Try the Demo ↗
+
+          <h1 class="hero-title">
+            <span class="line-appear">How does</span>
+            <span class="gradient-text line-appear delay-one">
+              FIND IT work?
+            </span>
+          </h1>
+
+          <p class="hero-description animate-up">
+            No complicated setup. Just three simple steps
+            to organize your belongings and remember
+            where you last placed them.
+          </p>
+
+          <div class="d-flex flex-wrap gap-3 animate-up">
+            <a href="#walkthrough" class="btn btn-glow btn-lg">
+              Try Interactive Demo ↗
             </a>
-            <a href="#steps" class="btn btn-ghost btn-lg">
-              See the Steps ↓
+            <a href="#steps" class="btn btn-outline-custom btn-lg">
+              Explore Steps ↓
             </a>
           </div>
         </div>
 
         <div class="col-lg-6">
-          <div class="how-graphic">
-            <div class="orbit orbit-1"></div>
-            <div class="orbit orbit-2"></div>
-            <div class="how-core">🔍</div>
-            <span class="how-bubble hb1">📦 Add Item</span>
-            <span class="how-bubble hb2">📍 Save Location</span>
-            <span class="how-bubble hb3">✅ Find It</span>
+          <div class="magic-scene animate-right">
+            <div class="orbit orbit-large"></div>
+            <div class="orbit orbit-small"></div>
+            <div class="magic-center">🔎</div>
+
+            <span class="floating-tag tag-top">📦 Add Item</span>
+            <span class="floating-tag tag-bottom">📍 Save Location</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
   <section class="section-space" id="steps">
     <div class="container">
-      <div class="section-heading reveal">
-        <p class="eyebrow">THREE STEPS</p>
-        <h2>Simple from start <span>to finish.</span></h2>
-        <p>No complicated setup. Just remember where you put things.</p>
+
+      <div class="section-heading reveal-zoom">
+        <p class="section-label">THREE SIMPLE STEPS</p>
+        <h2>
+          From lost
+          <span class="gradient-text">to found.</span>
+        </h2>
+        <p>Understand the complete FIND IT process.</p>
       </div>
 
       <div class="row g-4">
+
         <div class="col-lg-4">
-          <article class="feature-card reveal tilt">
-            <span class="feature-index">STEP 01</span>
+          <div class="feature-card tilt-card reveal-left">
+            <div class="card-top">
+              <span>STEP 01</span>
+              <span>↗</span>
+            </div>
             <div class="feature-icon">📦</div>
-            <h3>Add your item</h3>
+            <h3>Add Your Item</h3>
             <p>
-              Give the item a name, like “House Keys”,
-              and optionally select a category.
+              Type the item's name and choose a category.
+              Every saved item becomes part of your collection.
             </p>
-            <div class="mini-chip">🔑 House Keys</div>
-          </article>
+            <span class="example-chip">🔑 House Keys</span>
+          </div>
         </div>
 
         <div class="col-lg-4">
-          <article class="feature-card reveal tilt">
-            <span class="feature-index">STEP 02</span>
+          <div class="feature-card tilt-card reveal-up">
+            <div class="card-top">
+              <span>STEP 02</span>
+              <span>↗</span>
+            </div>
             <div class="feature-icon">📍</div>
-            <h3>Save its location</h3>
+            <h3>Save Its Location</h3>
             <p>
-              Record where you placed it,
-              such as “Living Room — Drawer”.
+              Write down where you placed the item,
+              such as a drawer, desk or school bag.
             </p>
-            <div class="mini-chip">📍 Living Room · Drawer</div>
-          </article>
+            <span class="example-chip">Living Room · Drawer</span>
+          </div>
         </div>
 
         <div class="col-lg-4">
-          <article class="feature-card reveal tilt">
-            <span class="feature-index">STEP 03</span>
+          <div class="feature-card tilt-card reveal-right">
+            <div class="card-top">
+              <span>STEP 03</span>
+              <span>↗</span>
+            </div>
             <div class="feature-icon">🔎</div>
-            <h3>Find it later</h3>
+            <h3>Find It Again</h3>
             <p>
-              Search for your saved item and read
-              its last recorded location.
+              Open Dashboard, search for your item
+              and check the last location you saved.
             </p>
-            <div class="mini-chip">✅ Location found!</div>
-          </article>
+            <span class="example-chip">✓ Location Found</span>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <section class="section-space soft-section" id="walkthrough">
+  <section class="section-space section-purple" id="walkthrough">
     <div class="container">
-      <div class="section-heading reveal">
-        <p class="eyebrow">INTERACTIVE WALKTHROUGH</p>
-        <h2>See it in action. <span>Try it yourself.</span></h2>
-        <p>This demo shows how recording an item works.</p>
+
+      <div class="section-heading reveal-up">
+        <p class="section-label">INTERACTIVE EXPERIENCE</p>
+        <h2>
+          Don't just read it.
+          <span class="gradient-text">Try it yourself.</span>
+        </h2>
+        <p>Watch your information move through three steps.</p>
       </div>
 
-      <div class="walkthrough reveal">
+      <div class="walkthrough reveal-zoom">
+
         <div class="walk-header">
           <span id="walkStepLabel">STEP 1 OF 3</span>
           <div class="walk-progress">
-            <span id="walkProgress"></span>
+            <div id="walkProgressBar"></div>
           </div>
         </div>
 
-        <div class="walk-icon" id="walkIcon">📦</div>
-        <h3 id="walkTitle">Add your item</h3>
+        <div id="walkIcon" class="walk-icon">📦</div>
+        <h3 id="walkTitle">Add Your Item</h3>
         <p id="walkDescription">
-          Start by giving the item a name.
+          Give your belonging a name.
         </p>
 
-        <div class="walk-forms">
-          <label for="demoItem">Item name</label>
-          <input id="demoItem" class="form-control"
-            value="House Keys" maxlength="60"
-            placeholder="e.g. House Keys">
+        <div class="walk-fields">
+          <label for="demoName">Item Name</label>
+          <input id="demoName" class="form-control"
+                 value="House Keys" maxlength="60"
+                 placeholder="e.g. House Keys">
 
-          <div id="locationGroup" class="mt-3 d-none">
-            <label for="demoLocation">Last known location</label>
+          <div id="demoLocationGroup" class="mt-3 d-none">
+            <label for="demoLocation">Location</label>
             <input id="demoLocation" class="form-control"
-              value="Living Room · Drawer" maxlength="100"
-              placeholder="e.g. Living Room">
+                   value="Living Room · Drawer" maxlength="100"
+                   placeholder="e.g. Living Room">
           </div>
         </div>
 
-        <div id="walkResult" class="walk-result d-none"></div>
-        <div id="walkMessage" class="walk-message" role="status"></div>
+        <div id="walkResult" class="success-note d-none"></div>
+        <p id="walkError" class="form-error" role="status"></p>
 
         <div class="d-flex justify-content-between gap-3 mt-4">
           <button id="walkBack" type="button"
-            class="btn btn-ghost" disabled>
+                  class="btn btn-outline-custom" disabled>
             ← Back
           </button>
-          <button id="walkNext" type="button" class="btn btn-violet">
+
+          <button id="walkNext" type="button" class="btn btn-glow">
             Next Step →
           </button>
         </div>
+
       </div>
     </div>
   </section>
 
   <section class="section-space">
     <div class="container">
-      <div class="section-heading reveal">
-        <p class="eyebrow">THE DIFFERENCE</p>
-        <h2>Less guessing. <span>More clarity.</span></h2>
+
+      <div class="section-heading reveal-up">
+        <p class="section-label">BEFORE VS AFTER</p>
+        <h2>
+          From chaos
+          <span class="gradient-text">to clarity.</span>
+        </h2>
       </div>
 
       <div class="row g-4">
+
         <div class="col-lg-6">
-          <div class="compare-card bad reveal tilt">
-            <p class="eyebrow">WITHOUT FIND IT</p>
-            <div class="compare-emoji">😵‍💫</div>
-            <h3>“Where did I leave my keys?”</h3>
+          <div class="comparison-card comparison-bad tilt-card reveal-left">
+            <p class="section-label">WITHOUT FIND IT</p>
+            <div class="comparison-icon">😵‍💫</div>
+            <h3>Where did I leave it?</h3>
             <p>
-              Trying to remember which room,
-              drawer or shelf you used.
+              Looking through drawers, bags and rooms
+              trying to remember the item's location.
             </p>
-            <span>✕ No saved location</span>
+            <div class="comparison-status">✕ Location unknown</div>
           </div>
         </div>
 
         <div class="col-lg-6">
-          <div class="compare-card good reveal tilt">
-            <p class="eyebrow">WITH FIND IT</p>
-            <div class="compare-emoji">😎</div>
-            <h3>“I wrote it down!”</h3>
+          <div class="comparison-card comparison-good tilt-card reveal-right">
+            <p class="section-label">WITH FIND IT</p>
+            <div class="comparison-icon">😎</div>
+            <h3>Found the saved location!</h3>
             <p>
-              Open your saved list and check
-              the location you previously recorded.
+              Search your collection and check
+              the location you recorded previously.
             </p>
-            <span>✓ Living Room · Drawer</span>
+            <div class="comparison-status">✓ Living Room · Drawer</div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <section class="section-space soft-section">
+  <section class="section-space section-purple">
     <div class="container">
-      <div class="section-heading reveal">
-        <p class="eyebrow">FAQ</p>
-        <h2>Questions? <span>We've got answers.</span></h2>
+
+      <div class="section-heading reveal-zoom">
+        <p class="section-label">FAQ</p>
+        <h2>
+          Questions?
+          <span class="gradient-text">We've got answers.</span>
+        </h2>
       </div>
 
-      <div class="accordion faq reveal" id="finditFaq">
+      <div class="accordion custom-accordion reveal-up" id="faqAccordion">
+
         <div class="accordion-item">
           <h3 class="accordion-header">
             <button class="accordion-button" type="button"
-              data-bs-toggle="collapse" data-bs-target="#faqA">
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faqOne">
               What is FIND IT?
             </button>
           </h3>
-          <div id="faqA" class="accordion-collapse collapse show"
-            data-bs-parent="#finditFaq">
+
+          <div id="faqOne" class="accordion-collapse collapse show"
+               data-bs-parent="#faqAccordion">
             <div class="accordion-body">
-              FIND IT is a simple way to record the
-              last known locations of your belongings.
+              FIND IT is a website for saving item names
+              and their last recorded locations.
             </div>
           </div>
         </div>
@@ -284,15 +267,17 @@
         <div class="accordion-item">
           <h3 class="accordion-header">
             <button class="accordion-button collapsed" type="button"
-              data-bs-toggle="collapse" data-bs-target="#faqB">
-              Does it use GPS to track my keys?
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faqTwo">
+              Does FIND IT track my belongings using GPS?
             </button>
           </h3>
-          <div id="faqB" class="accordion-collapse collapse"
-            data-bs-parent="#finditFaq">
+
+          <div id="faqTwo" class="accordion-collapse collapse"
+               data-bs-parent="#faqAccordion">
             <div class="accordion-body">
-              No. FIND IT shows the location you manually saved.
-              It cannot physically track an item.
+              No. FIND IT displays locations that you enter manually.
+              It cannot physically track objects.
             </div>
           </div>
         </div>
@@ -300,15 +285,17 @@
         <div class="accordion-item">
           <h3 class="accordion-header">
             <button class="accordion-button collapsed" type="button"
-              data-bs-toggle="collapse" data-bs-target="#faqC">
-              Can I use it on my phone?
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faqThree">
+              Can I edit or delete items?
             </button>
           </h3>
-          <div id="faqC" class="accordion-collapse collapse"
-            data-bs-parent="#finditFaq">
+
+          <div id="faqThree" class="accordion-collapse collapse"
+               data-bs-parent="#faqAccordion">
             <div class="accordion-body">
-              The website layout adapts to mobile screens.
-              This is a demo, not a synchronized cloud app.
+              Yes. The Dashboard allows you to add,
+              edit, search and delete saved items.
             </div>
           </div>
         </div>
@@ -316,52 +303,44 @@
         <div class="accordion-item">
           <h3 class="accordion-header">
             <button class="accordion-button collapsed" type="button"
-              data-bs-toggle="collapse" data-bs-target="#faqD">
-              Is Sign Up a real online account?
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faqFour">
+              Will my items stay after refreshing the website?
             </button>
           </h3>
-          <div id="faqD" class="accordion-collapse collapse"
-            data-bs-parent="#finditFaq">
+
+          <div id="faqFour" class="accordion-collapse collapse"
+               data-bs-parent="#faqAccordion">
             <div class="accordion-body">
-              No. This prototype saves the account locally
-              in your browser, not on an online server.
+              Yes, while this browser's local storage remains available
+              and has not been cleared.
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
   <section class="section-space">
     <div class="container">
-      <div class="closing-card reveal">
-        <p class="eyebrow">READY TO GET STARTED?</p>
-        <h2>Make remembering <span>feel effortless.</span></h2>
-        <p>Start with one item and one location.</p>
-        <button type="button" class="btn btn-light btn-lg"
-          data-bs-toggle="modal" data-bs-target="#signupModal">
-          Create Demo Profile ↗
-        </button>
+      <div class="cta-card reveal-zoom">
+        <p class="section-label">NOW YOU KNOW HOW</p>
+        <h2>
+          Ready to
+          <span class="gradient-text">find your stuff?</span>
+        </h2>
+        <p>Take the next step and create your collection.</p>
+        <a href="dashboard.html" class="btn btn-light btn-lg">
+          Open Dashboard ↗
+        </a>
       </div>
     </div>
   </section>
+
 </main>
 
-<footer class="site-footer">
-  <div class="container d-flex flex-wrap justify-content-between gap-3">
-    <div>
-      <strong>🔎 FIND <span>IT.</span></strong>
-      <p>Less searching. More living.</p>
-    </div>
-    <div>
-      <a href="index.html">Home</a>
-      <a href="how.html">How It Works</a>
-      <a href="features.html">Features</a>
-      <a href="about.html">About</a>
-    </div>
-    <small>© 2026 FIND IT</small>
-  </div>
-</footer>
+<div id="site-footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="main.js"></script>
