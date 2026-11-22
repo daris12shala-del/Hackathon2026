@@ -1,0 +1,10 @@
+FIND IT — IMAGE CHECK
+
+My Home: original myhome.html unchanged byte-for-byte; added no new photos; dynamically inserted shared header/footer images hidden on that page.
+
+All 5 other HTML pages: every external Unsplash photo now has a local SVG fallback, plus global photo-guard.js handles dynamically created photos.
+
+Source review: some external URLs did not open in web verification; particularly keys, watch, wallet, exterior home.
+Known subject mismatches: location pin URL showed mountains, search URL showed office, box URL showed shopping bags. These are replaced by labeled local graphics for their respective spots.
+
+Live external online image loading varies by network; local fallback ensures no broken-image placeholders. Fallback images are vector illustrations, not photographs. Other verified photo links remain remote and require Internet to show their photographic versions.

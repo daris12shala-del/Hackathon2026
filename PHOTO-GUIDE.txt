@@ -1,0 +1,18 @@
+FIND IT — PHOTO STUDIO
+
+HOW IMAGES ARE ARRANGED:
+Hero: small cropped photos inside dashboard showcase, 28px chips.
+Feature cards: wide 190px visual, cover crop + hover zoom.
+Editorial photo sections: large 3-column 250px images.
+Story split sections: 430px photo next to text.
+Dashboard: square thumbnail images, not stretched emoji replacements.
+Mobile: photo cards stack, features show photo before text.
+
+EDIT / REPLACE AN IMAGE:
+Find its <img> element by searching its alt text in index.html, how.html, dashboard.html, features.html or about.html.
+Change the src URL to another suitable photo URL.
+Change object-position in style.css to move the crop.
+Change height on .fi-story-frame or .fi-feature-picture to adjust photo space.
+Use object-fit:cover to fill without distortion.
+Photos load from images.unsplash.com and need internet.
+myhome.html is identical to Photo Edition, left untouched.

@@ -5,320 +5,91 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FIND IT | Home</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="home">
+  <div id="site-header"></div>
 
-<div id="site-header"></div>
-<div class="scroll-progress" id="scrollProgress"></div>
+  <main>
+    <section class="hero container">
+      <div class="hero-copy">
+        <span class="eyebrow">YOUR SMART LOST & FOUND ASSISTANT</span>
+        <h1>Lost something? <em>Let's find it.</em></h1>
+        <p>Never forget where you left your belongings. Save locations, organize items and find them whenever you need.</p>
+        <div class="actions">
+          <a href="dashboard.html" class="btn primary">Open Dashboard</a>
+          <a href="how.html" class="btn outline">How It Works</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="Modern organized workspace">
+        <div class="photo-caption">Everything in its place.</div>
+      </div>
+    </section>
 
-<main>
+    <section class="section container">
+      <div class="section-heading">
+        <span class="eyebrow">WHY FIND IT?</span>
+        <h2>Everything organized. <em>Nothing forgotten.</em></h2>
+        <p>Three simple steps make life easier.</p>
+      </div>
 
-  <section class="hero home-hero">
-    <div class="glow glow-one"></div>
-    <div class="glow glow-two"></div>
-    <div class="grid-background"></div>
-
-    <div class="container position-relative">
-      <div class="row align-items-center g-5">
-
-        <div class="col-lg-6">
-          <div class="hero-content">
-            <p class="eyebrow animate-down">
-              ✦ THE SMART WAY TO STAY ORGANIZED
-            </p>
-
-            <h1 class="hero-title">
-              <span class="line-appear">Lost something?</span>
-              <span class="gradient-text line-appear delay-one">
-                Let's find it.
-              </span>
-            </h1>
-
-            <p class="hero-description animate-up">
-              Your keys, headphones, wallet and everything else.
-              FIND IT remembers the locations you save so
-              you can spend less time searching and more time living.
-            </p>
-
-            <div class="d-flex flex-wrap gap-3 animate-up">
-              <a href="dashboard.html" class="btn btn-glow btn-lg">
-                Open Dashboard ↗
-              </a>
-              <a href="how.html" class="btn btn-outline-custom btn-lg">
-                How It Works →
-              </a>
-            </div>
-
-            <div class="hero-highlights animate-up">
-              <span>✦ Simple</span>
-              <span>✦ Fast</span>
-              <span>✦ Organized</span>
-            </div>
+      <div class="cards three">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=85" alt="Backpack">
+          <div class="card-body">
+            <span class="eyebrow">01 / COLLECT</span>
+            <h3>Add belongings</h3>
+            <p>Record the items you want to remember.</p>
+            <a href="dashboard.html">Open Dashboard</a>
           </div>
-        </div>
-
-        <div class="col-lg-6">
-          <div class="hero-scene animate-right">
-            <div class="orbit orbit-large"></div>
-            <div class="orbit orbit-small"></div>
-
-            <div class="floating-tag tag-top">
-              📍 Location Saved
-            </div>
-
-            <div class="floating-tag tag-bottom">
-              ✅ Item Found!
-            </div>
-
-            <div class="dashboard-preview tilt-card">
-              <div class="preview-header">
-                <span>✦ MY COLLECTION</span>
-                <span>● ● ●</span>
-              </div>
-
-              <h3>Everything in place.</h3>
-              <p class="muted">Your personal item vault</p>
-
-              <div class="preview-search">
-                🔍 Search your belongings...
-              </div>
-
-              <div class="preview-item">
-                <div class="item-emoji">🔑</div>
-                <div>
-                  <strong>House Keys</strong>
-                  <small>Living Room · Drawer</small>
-                </div>
-                <span class="check">✓</span>
-              </div>
-
-              <div class="preview-item">
-                <div class="item-emoji">🎧</div>
-                <div>
-                  <strong>Headphones</strong>
-                  <small>Bedroom · Desk</small>
-                </div>
-                <span class="check">✓</span>
-              </div>
-
-              <div class="preview-item">
-                <div class="item-emoji">📱</div>
-                <div>
-                  <strong>Phone Charger</strong>
-                  <small>Office · Shelf</small>
-                </div>
-                <span class="check">✓</span>
-              </div>
-
-              <div class="preview-footer">
-                <span>● All locations saved</span>
-                <span>03 ITEMS</span>
-              </div>
-            </div>
+        </article>
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=85" alt="Writing notes">
+          <div class="card-body">
+            <span class="eyebrow">02 / REMEMBER</span>
+            <h3>Save locations</h3>
+            <p>Remember the exact drawer, room or shelf.</p>
+            <a href="how.html">See How It Works</a>
           </div>
-        </div>
-
-      </div>
-
-      <a href="#discover" class="scroll-down">
-        <span>SCROLL TO EXPLORE</span>
-        <span class="scroll-arrow">↓</span>
-      </a>
-    </div>
-  </section>
-
-  <section class="process-strip">
-    <div class="container">
-      <div class="row g-4 text-center">
-        <div class="col-md-4 reveal-left">
-          <strong>01.</strong> Add your item
-        </div>
-        <div class="col-md-4 reveal-up">
-          <strong>02.</strong> Save its location
-        </div>
-        <div class="col-md-4 reveal-right">
-          <strong>03.</strong> Find it again
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-space" id="discover">
-    <div class="container">
-
-      <div class="section-heading reveal-zoom">
-        <p class="section-label">DISCOVER FIND IT</p>
-        <h2>
-          More than a website.
-          <span class="gradient-text">Your everyday helper.</span>
-        </h2>
-        <p>Everything you need to remember where things belong.</p>
-      </div>
-
-      <div class="row g-4">
-
-        <div class="col-lg-4">
-          <a href="dashboard.html"
-             class="feature-card tilt-card reveal-left">
-            <div class="card-top">
-              <span>01 / ORGANIZE</span>
-              <span>↗</span>
-            </div>
-            <div class="feature-icon">📦</div>
-            <h3>Save Your Items</h3>
-            <p>
-              Create your own collection of belongings
-              with categories, locations and notes.
-            </p>
-            <span class="card-link">Open Dashboard →</span>
-          </a>
-        </div>
-
-        <div class="col-lg-4">
-          <a href="how.html"
-             class="feature-card tilt-card reveal-up">
-            <div class="card-top">
-              <span>02 / REMEMBER</span>
-              <span>↗</span>
-            </div>
-            <div class="feature-icon">📍</div>
-            <h3>Remember Locations</h3>
-            <p>
-              Stop guessing where things are.
-              Record the last place you put them.
-            </p>
-            <span class="card-link">Explore The Process →</span>
-          </a>
-        </div>
-
-        <div class="col-lg-4">
-          <a href="features.html"
-             class="feature-card tilt-card reveal-right">
-            <div class="card-top">
-              <span>03 / DISCOVER</span>
-              <span>↗</span>
-            </div>
-            <div class="feature-icon">🔎</div>
-            <h3>Search Instantly</h3>
-            <p>
-              Filter your collection, search by name
-              and quickly check saved locations.
-            </p>
-            <span class="card-link">Discover Features →</span>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="section-space section-purple">
-    <div class="container">
-      <div class="row align-items-center g-5">
-
-        <div class="col-lg-6 reveal-left">
-          <p class="section-label">YOUR OWN LITTLE UNIVERSE</p>
-
-          <h2 class="section-title">
-            Keep everything
-            <span class="gradient-text">in your orbit.</span>
-          </h2>
-
-          <p class="section-description">
-            Every important item deserves a place.
-            FIND IT helps you build a personal collection
-            with a beautiful, easy-to-use dashboard.
-          </p>
-
-          <a href="dashboard.html" class="btn btn-glow btn-lg">
-            Start Organizing ↗
-          </a>
-        </div>
-
-        <div class="col-lg-6 reveal-right">
-          <div class="magic-scene">
-            <div class="orbit orbit-large"></div>
-            <div class="orbit orbit-small"></div>
-
-            <div class="magic-center">🔍</div>
-
-            <div class="magic-item magic-one">🔑</div>
-            <div class="magic-item magic-two">🎧</div>
-            <div class="magic-item magic-three">📱</div>
-            <div class="magic-item magic-four">👛</div>
-            <div class="magic-item magic-five">⌚</div>
+        </article>
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9d?auto=format&fit=crop&w=800&q=85" alt="Smartphone">
+          <div class="card-body">
+            <span class="eyebrow">03 / SEARCH</span>
+            <h3>Find items</h3>
+            <p>Look up an item and see where you saved it.</p>
+            <a href="features.html">Explore Features</a>
           </div>
-        </div>
-
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section-space">
-    <div class="container">
-      <div class="section-heading reveal-up">
-        <p class="section-label">WHY IT MATTERS</p>
-        <h2>
-          Less searching.
-          <span class="gradient-text">More living.</span>
-        </h2>
-      </div>
-
-      <div class="row g-4 text-center">
-        <div class="col-md-4 reveal-left">
-          <div class="stat-showcase">
-            <div class="stat-visual">⚡</div>
-            <h3>Quick</h3>
-            <p>Find your saved information in a few clicks.</p>
-          </div>
+    <section class="section alt">
+      <div class="container feature-split">
+        <div class="feature-photo">
+          <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1100&q=85" alt="Modern home interior">
         </div>
-
-        <div class="col-md-4 reveal-up">
-          <div class="stat-showcase">
-            <div class="stat-visual">🎯</div>
-            <h3>Focused</h3>
-            <p>Stay organized without unnecessary complexity.</p>
-          </div>
-        </div>
-
-        <div class="col-md-4 reveal-right">
-          <div class="stat-showcase">
-            <div class="stat-visual">💜</div>
-            <h3>Personal</h3>
-            <p>A collection that belongs to your local profile.</p>
-          </div>
+        <div>
+          <span class="eyebrow">MY HOME STUDIO</span>
+          <h2>Explore your home <em>in 3D.</em></h2>
+          <p>Create floors, furnish rooms, explore your garden and remember the locations of belongings.</p>
+          <a href="myhome.html" class="btn primary">Explore My Home</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section-space">
-    <div class="container">
-      <div class="cta-card reveal-zoom">
-        <div class="cta-glow"></div>
-        <p class="section-label">YOUR STUFF. YOUR SPACE.</p>
-
-        <h2>
-          Life's too short
-          <span class="gradient-text">to search for keys.</span>
-        </h2>
-
-        <p>Turn “Where did I put it?” into “Found it!”</p>
-
-        <a href="dashboard.html" class="btn btn-light btn-lg">
-          Get Started Free ↗
-        </a>
+    <section class="section container">
+      <div class="cta">
+        <span class="eyebrow">READY WHEN YOU ARE</span>
+        <h2>Life is too short to search for keys.</h2>
+        <p>Start organizing your world with FIND IT.</p>
+        <a href="dashboard.html" class="btn light">Get Started</a>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-</main>
-
-<div id="site-footer"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="main.js"></script>
+  <div id="site-footer"></div>
+  <script src="main.js"></script>
 </body>
 </html>

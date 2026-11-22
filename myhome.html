@@ -2,263 +2,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FIND IT | Multi-Floor Home Studio</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FIND IT | My Home</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="myhome">
-<div id="site-header"></div>
+  <div id="site-header"></div>
 
-<main class="mh-page">
-  <section class="mh-hero">
-    <div>
-      <p class="mh-kicker">✦ FIND IT / 3D HOME STUDIO</p>
-      <h1>Your Home. <span>Your World.</span></h1>
-      <p>Create multiple floors, personalize every room, explore the garden and find your belongings.</p>
-    </div>
-    <div class="mh-hero-actions">
-      <button id="mhSave" class="mh-button mh-primary">Save Home</button>
-      <button id="mhReset" class="mh-button mh-outline">Reset Demo</button>
-    </div>
-  </section>
+  <main class="container home-page">
+    <section class="subhero compact">
+      <span class="eyebrow">MY PERSONAL 3D HOME</span>
+      <h1>My <em>Dream Home</em></h1>
+      <p>Describe your house, manage your rooms and remember your belongings.</p>
+    </section>
 
-  <div class="mh-workspace">
-    <aside class="mh-panel mh-left">
-      <div class="mh-panel-header">
-        <h2>🏡 Home Studio</h2>
-        <span class="mh-count" id="mhFloorCount">0 floors</span>
-      </div>
+    <section class="home-layout">
+      <aside class="surface home-sidebar">
+        <h2>Home Generator</h2>
+        <p class="muted">Describe your house in English.</p>
 
-      <label for="mhFloorChoice">Active Floor</label>
-      <select id="mhFloorChoice"></select>
+        <label for="homePrompt">Describe Your Dream Home</label>
+        <textarea id="homePrompt" rows="7"
+          placeholder="Create a house with 3 floors.
+Basement: 1 garage and 1 storage room.
+Ground Floor: 1 living room, 1 kitchen and 1 bathroom.
+First Floor: 3 bedrooms and 2 bathrooms."></textarea>
 
-      <div class="mh-row">
-        <button id="mhAddFloor" class="mh-button mh-primary">+ Add Floor</button>
-        <button id="mhRemoveFloor" class="mh-button mh-outline">Remove Floor</button>
-      </div>
+        <button id="generateHome" class="btn primary full">
+          Generate My Home
+        </button>
 
-      <label for="mhFloorName">Floor Name</label>
-      <div class="mh-row">
-        <input id="mhFloorName" maxlength="40" placeholder="e.g. First Floor">
-        <button id="mhRenameFloor" class="mh-mini">Save</button>
-      </div>
+        <div class="separator"></div>
+        <h3>Floor Manager</h3>
 
-      <div class="mh-divider"></div>
+        <label for="floorSelect">Selected Floor</label>
+        <select id="floorSelect"></select>
 
-      <div class="mh-subtitle">
-        <h3>ROOM DESIGNER</h3>
-        <span id="mhRoomCount">0 rooms</span>
-      </div>
-
-      <label for="mhRoomType">Choose an extra room</label>
-      <select id="mhRoomType">
-        <option value="bedroom">🛏️ Bedroom</option>
-        <option value="living">🛋️ Living Room</option>
-        <option value="kitchen">🍳 Kitchen</option>
-        <option value="bathroom">🚿 Bathroom</option>
-        <option value="garage">🚗 Garage</option>
-        <option value="storage">📦 Storage / Depo</option>
-        <option value="basement">🏚️ Basement Room / Podrum</option>
-        <option value="laundry">🧺 Laundry Room</option>
-        <option value="office">💻 Office</option>
-        <option value="gym">🏋️ Gym</option>
-        <option value="game">🎮 Game Room</option>
-        <option value="dining">🍽️ Dining Room</option>
-        <option value="hallway">🚪 Hallway</option>
-        <option value="custom">✨ Custom Room</option>
-      </select>
-
-      <label for="mhNewRoomName">Custom Room Name</label>
-      <input id="mhNewRoomName" maxlength="45" placeholder="e.g. Ela's Bedroom">
-
-      <button id="mhAddRoom" class="mh-button mh-primary mh-wide">
-        + Add Room to This Floor
-      </button>
-
-      <div class="mh-room-list" id="mhRoomList"></div>
-
-      <div id="mhRoomEditor" class="mh-room-editor" hidden>
-        <div class="mh-subtitle">
-          <h3>EDIT SELECTED ROOM</h3>
-          <button id="mhCloseEditor" class="mh-icon-btn">×</button>
+        <div class="two">
+          <button id="addFloor" class="btn primary">Add Floor</button>
+          <button id="deleteFloor" class="btn outline">Delete Floor</button>
         </div>
 
-        <label for="mhRenameInput">Room Name</label>
-        <input id="mhRenameInput" maxlength="45">
+        <label for="floorName">Rename Floor</label>
+        <div class="inline-field">
+          <input id="floorName" maxlength="45">
+          <button id="renameFloor" class="btn primary">Save</button>
+        </div>
 
-        <label for="mhReType">Room Type</label>
-        <select id="mhReType">
+        <div class="separator"></div>
+        <h3>Room Designer</h3>
+
+        <label for="roomType">Room Type</label>
+        <select id="roomType">
           <option value="bedroom">Bedroom</option>
           <option value="living">Living Room</option>
           <option value="kitchen">Kitchen</option>
           <option value="bathroom">Bathroom</option>
           <option value="garage">Garage</option>
           <option value="storage">Storage</option>
-          <option value="basement">Basement Room</option>
-          <option value="laundry">Laundry Room</option>
+          <option value="basement">Basement</option>
           <option value="office">Office</option>
-          <option value="gym">Gym</option>
           <option value="game">Game Room</option>
+          <option value="gym">Gym</option>
+          <option value="laundry">Laundry</option>
           <option value="dining">Dining Room</option>
-          <option value="hallway">Hallway</option>
           <option value="custom">Custom Room</option>
         </select>
 
-        <button id="mhApplyRoom" class="mh-button mh-primary mh-wide">
-          Save Room Changes
+        <label for="newRoomName">Room Name</label>
+        <input id="newRoomName" maxlength="60"
+               placeholder="Ela's Bedroom">
+
+        <button id="addRoom" class="btn primary full">Add Room</button>
+
+        <div id="roomList" class="room-list"></div>
+
+        <div id="roomEditor" class="edit-box" hidden>
+          <h3>Edit Room</h3>
+
+          <label for="editRoomName">New Room Name</label>
+          <input id="editRoomName" maxlength="60">
+
+          <label for="editRoomType">Room Type</label>
+          <select id="editRoomType">
+            <option value="bedroom">Bedroom</option>
+            <option value="living">Living Room</option>
+            <option value="kitchen">Kitchen</option>
+            <option value="bathroom">Bathroom</option>
+            <option value="garage">Garage</option>
+            <option value="storage">Storage</option>
+            <option value="basement">Basement</option>
+            <option value="office">Office</option>
+            <option value="game">Game Room</option>
+            <option value="gym">Gym</option>
+            <option value="laundry">Laundry</option>
+            <option value="dining">Dining Room</option>
+            <option value="custom">Custom Room</option>
+          </select>
+
+          <button id="applyRoom" class="btn primary full">
+            Save Changes
+          </button>
+          <button id="removeRoom" class="btn danger full">
+            Delete Room
+          </button>
+          <button id="closeRoomEditor" class="btn outline full">
+            Close
+          </button>
+        </div>
+      </aside>
+
+      <div class="home-main">
+        <div class="view-toolbar">
+          <button id="viewExterior" class="view-btn active">Exterior</button>
+          <button id="viewExploded" class="view-btn">Exploded Floors</button>
+          <button id="viewSelected" class="view-btn">Selected Floor</button>
+          <button id="viewTop" class="view-btn">Top View</button>
+          <button id="viewReset" class="view-btn">Reset Camera</button>
+        </div>
+
+        <div id="homeViewer" class="home-viewer">
+          <div id="threeCanvas"></div>
+          <span class="viewer-tag">INTERACTIVE 3D</span>
+          <span class="viewer-help">Drag to rotate · Scroll to zoom</span>
+        </div>
+
+        <div class="home-stats">
+          <div><strong id="floorCount">0</strong><span>Floors</span></div>
+          <div><strong id="roomCount">0</strong><span>Rooms</span></div>
+          <div><strong id="itemCount">0</strong><span>Items</span></div>
+        </div>
+      </div>
+
+      <aside class="surface home-sidebar">
+        <h2>Find My Stuff</h2>
+        <button id="openItemModal" class="btn primary full">
+          Record an Item
         </button>
 
-        <button id="mhDeleteRoom" class="mh-button mh-danger mh-wide">
-          Delete Room
-        </button>
-      </div>
-
-      <div class="mh-divider"></div>
-
-      <button id="mhPromptToggle" class="mh-button mh-outline mh-wide">
-        ✍️ Edit Home With Text
-      </button>
-
-      <div id="mhPromptSection" hidden>
-        <label for="mhPrompt">Describe room changes</label>
-        <textarea id="mhPrompt" rows="4" placeholder="Add 2 bedrooms or Shto 1 garazh"></textarea>
-        <button id="mhApplyPrompt" class="mh-button mh-primary mh-wide">
-          Apply Description
-        </button>
-        <p class="mh-muted">
-          Write room quantities in Albanian or English.
-          Select the destination floor first.
-        </p>
-      </div>
-    </aside>
-
-    <section class="mh-main">
-      <div class="mh-toolbar">
-        <div class="mh-toolbar-group">
-          <button id="mhExterior" class="mh-toolbar-button active">🏠 Exterior</button>
-          <button id="mhExplode" class="mh-toolbar-button">🧩 Exploded Floors</button>
-          <button id="mhOneFloor" class="mh-toolbar-button">🪜 Selected Floor</button>
+        <label for="findInput">Search Items</label>
+        <div class="inline-field">
+          <input id="findInput" placeholder="House Keys">
+          <button id="findButton" class="btn primary">Find</button>
         </div>
 
-        <div class="mh-toolbar-group">
-          <button id="mhTopView" class="mh-toolbar-button">Top View</button>
-          <button id="mhResetCamera" class="mh-toolbar-button">Reset Camera</button>
-        </div>
-      </div>
+        <h3>Saved Items</h3>
+        <div id="savedItems" class="saved-items"></div>
 
-      <div class="mh-viewport" id="mhViewport">
-        <div id="mhCanvas" class="mh-canvas"></div>
-
-        <div class="mh-corner">
-          ● INTERACTIVE 3D
-          <span id="mhModeText">EXTERIOR VIEW</span>
+        <div id="homeStatus" class="feedback" role="status">
+          Your 3D home is ready.
         </div>
-
-        <div class="mh-hint">
-          Drag to rotate · Scroll to zoom · Zoom in to separate floors
-        </div>
-
-        <div id="mhFloorsOverlay" class="mh-floors-overlay" aria-hidden="true">
-          <span id="mhOverlayText"></span>
-        </div>
-      </div>
-
-      <div class="mh-info-bar">
-        <div>
-          <strong id="mhTotalRooms">0</strong>
-          <span>Rooms</span>
-        </div>
-        <div>
-          <strong id="mhTotalFloors">0</strong>
-          <span>Floors</span>
-        </div>
-        <div>
-          <strong id="mhTotalItems">0</strong>
-          <span>Saved Items</span>
-        </div>
-        <div>
-          <strong>🌳</strong>
-          <span>Garden + Pool</span>
-        </div>
-      </div>
-
-      <p class="mh-subnote">
-        Floors, rooms and item locations are stored in this browser.
-        This is an interactive 3D prototype, not a photorealistic architectural model.
-      </p>
+      </aside>
     </section>
 
-    <aside class="mh-panel mh-right">
-      <h2>📍 Find My Stuff</h2>
-
-      <button id="mhAddItem" class="mh-button mh-primary mh-wide">
-        + Record an Item
-      </button>
-
-      <label for="mhSearch">Search Belongings</label>
-      <div class="mh-row">
-        <input id="mhSearch" placeholder="School Bag">
-        <button id="mhFind" class="mh-mini">Find</button>
+    <section class="voice-panel">
+      <div class="voice-header">
+        <div>
+          <span class="eyebrow">FIND IT / VOICE CONTROL</span>
+          <h2>Voice Assistant</h2>
+          <p>Talk to FIND IT or write a message.</p>
+        </div>
+        <span id="voiceIndicator" class="voice-indicator">READY</span>
       </div>
 
-      <div class="mh-divider"></div>
-
-      <div class="mh-subtitle">
-        <h3>SAVED ITEMS</h3>
-        <span id="mhItemCount">0</span>
+      <div class="voice-controls">
+        <label for="voiceLanguage">Language</label>
+        <select id="voiceLanguage">
+          <option value="sq-AL">Shqip</option>
+          <option value="en-US">English</option>
+        </select>
+        <button id="voiceTalk" class="btn outline">Talk</button>
+        <button id="voiceSound" class="btn outline">Sound On</button>
       </div>
 
-      <div id="mhItemList" class="mh-item-list"></div>
+      <div class="voice-layout">
+        <div class="voice-conversation">
+          <h3>Conversation</h3>
+          <div id="voiceMessages" class="voice-messages" aria-live="polite">
+            <div class="voice-message bot">
+              Përshëndetje! Thuaj "Regjistro një send".
+            </div>
+          </div>
 
-      <p id="mhStatus" class="mh-status" role="status">
-        Welcome to your home studio!
-      </p>
+          <form id="voiceForm" class="voice-form">
+            <input id="voiceInput" maxlength="200"
+                   placeholder="Shkruaj ose fol..." autocomplete="off">
+            <button class="btn primary" type="submit">Send</button>
+          </form>
+        </div>
 
-      <p class="mh-muted">
-        Item locations are recorded manually.
-        FIND IT does not physically track objects.
-      </p>
-    </aside>
-  </div>
-</main>
+        <div id="voiceOrbArea" class="voice-orb-area">
+          <div class="voice-orb-wrap">
+            <span class="orb-ring ring-a"></span>
+            <span class="orb-ring ring-b"></span>
+            <button id="voiceOrb" class="voice-orb"
+                    type="button" aria-label="Start microphone">
+              <svg width="45" height="45" viewBox="0 0 24 24"
+                   fill="none" stroke="white" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="2" width="6" height="12" rx="3"></rect>
+                <path d="M5 10a7 7 0 0 0 14 0"></path>
+                <path d="M12 17v5"></path>
+                <path d="M8 22h8"></path>
+              </svg>
+            </button>
+          </div>
 
-<div id="mhItemModal" class="mh-modal" hidden>
-  <div class="mh-dialog" role="dialog" aria-modal="true" aria-labelledby="mhItemDialogTitle">
-    <div class="mh-dialog-header">
-      <h2 id="mhItemDialogTitle">📦 Record an Item</h2>
-      <button id="mhCloseModal" class="mh-icon-btn" type="button">×</button>
+          <h3 id="orbTitle">Your Voice Assistant</h3>
+          <p id="orbSubtitle">Tap the microphone to speak</p>
+          <div class="voice-waves" aria-hidden="true">
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+
+          <div class="voice-shortcuts">
+            <button id="voiceAdd" type="button">+ Add Item</button>
+            <button id="voiceFind" type="button">Find Item</button>
+            <button id="voiceHome" type="button">Show My Home</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="itemModal" class="modal-overlay" hidden>
+    <div class="modal-dialog">
+      <div class="modal-head">
+        <h2>Record an Item</h2>
+        <button id="closeItemModal" class="btn outline">Close</button>
+      </div>
+
+      <form id="itemForm" class="form-stack">
+        <label for="itemName">Item Name</label>
+        <input id="itemName" required maxlength="60">
+
+        <label for="itemFloor">Floor</label>
+        <select id="itemFloor" required></select>
+
+        <label for="itemRoom">Room</label>
+        <select id="itemRoom" required></select>
+
+        <label for="itemPlace">Exact Location</label>
+        <input id="itemPlace" required maxlength="100"
+               placeholder="On the table">
+
+        <button class="btn primary" type="submit">Save Item</button>
+      </form>
     </div>
-
-    <form id="mhItemForm">
-      <label for="mhItemName">Item Name</label>
-      <input id="mhItemName" maxlength="60" required placeholder="School Bag">
-
-      <label for="mhItemFloor">Floor</label>
-      <select id="mhItemFloor" required></select>
-
-      <label for="mhItemRoom">Room</label>
-      <select id="mhItemRoom" required></select>
-
-      <label for="mhItemPlace">Where Exactly?</label>
-      <input id="mhItemPlace" maxlength="80" required placeholder="Inside the wardrobe">
-
-      <div class="mh-row mh-modal-actions">
-        <button id="mhCancelModal" type="button" class="mh-button mh-outline">
-          Cancel
-        </button>
-        <button type="submit" class="mh-button mh-primary">
-          Save Item
-        </button>
-      </div>
-    </form>
   </div>
-</div>
 
-<div id="site-footer"></div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
-<script src="main.js"></script>
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+  <script src="main.js"></script>
+  <script src="voice.js"></script>
 </body>
 </html>
