@@ -1,799 +1,665 @@
 
-document.addEventListener("DOMContentLoaded", () => {
-  "use strict";
-
+document.addEventListener("DOMContentLoaded", function () {
   if (document.body.dataset.page !== "myhome") return;
 
   const $ = id => document.getElementById(id);
-  const homeAPI = window.FindItHome;
+  const app = window.FindIt;
 
-  if (!homeAPI) {
-    console.error("FindItHome API is missing.");
-    return;
-  }
+  if (!app || !$("voiceForm")) return;
 
   const Recognition =
     window.SpeechRecognition ||
     window.webkitSpeechRecognition;
 
+  const VOICE_KEY = "findit-selected-persona-v4";
+
   let recognition = null;
   let listening = false;
-  let soundEnabled = true;
-  let draft = null;
+  let sound = true;
+  let currentUtterance = null;
+  let speechToken = 0;
+  let availableVoices = [];
 
-  function isAlbanian() {
-    return $("voiceLanguage").value.startsWith("sq");
-  }
+  const synthesis = window.speechSynthesis || null;
 
-  function tr(al, en) {
-    return isAlbanian() ? al : en;
-  }
+  const voiceNames = {
+    sophie: [
+      "sophie",
+      "aria",
+      "jenny",
+      "samantha",
+      "zira",
+      "ava",
+      "victoria",
+      "karen",
+      "moira",
+      "female"
+    ],
+    daniel: [
+      "daniel",
+      "guy",
+      "david",
+      "mark",
+      "ryan",
+      "george",
+      "alex",
+      "male"
+    ]
+  };
 
-  function normalize(value) {
-    return String(value || "")
+  let selectedPersona = "sophie";
+
+  try {
+    const saved = localStorage.getItem(VOICE_KEY);
+
+    if (saved === "sophie" || saved === "daniel") {
+      selectedPersona = saved;
+    }
+  } catch {}
+
+  const sq = () =>
+    $("voiceLanguage").value.startsWith("sq");
+
+  const normal = text =>
+    String(text || "")
       .toLowerCase()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9 ']/g, " ")
+      .replace(/ç/g, "c")
+      .replace(/ë/g, "e")
+      .replace(/[^a-z0-9 ]/g, " ")
       .replace(/\s+/g, " ")
       .trim();
-  }
 
-  function message(text, sender = "bot") {
-    const element = document.createElement("div");
+  function bubble(text, role) {
+    const el = document.createElement("div");
 
-    element.className = "voice-message " + sender;
-    element.textContent = text;
+    el.className = "voice-message " + role;
+    el.textContent = text;
 
-    $("voiceMessages").append(element);
-
-    while ($("voiceMessages").children.length > 30) {
-      $("voiceMessages").firstElementChild.remove();
-    }
+    $("voiceMessages").append(el);
 
     $("voiceMessages").scrollTop =
       $("voiceMessages").scrollHeight;
   }
 
-  function speak(text) {
-    if (!soundEnabled || !window.speechSynthesis) return;
+  function loadVoices() {
+    if (!synthesis) return [];
 
-    speechSynthesis.cancel();
+    availableVoices = synthesis.getVoices();
 
-    const voice = new SpeechSynthesisUtterance(text);
-    voice.lang = $("voiceLanguage").value;
-    voice.rate = .94;
-
-    speechSynthesis.speak(voice);
+    return availableVoices;
   }
 
-  function answer(text) {
-    message(text);
-    speak(text);
+  function englishVoices() {
+    return availableVoices.filter(voice =>
+      /^en([-_]|$)/i.test(voice.lang)
+    );
   }
 
-  function setListening(active) {
-    listening = active;
+  function findPersonaVoice(persona) {
+    const voices = englishVoices();
 
-    $("voiceOrbArea").classList.toggle("listening", active);
-    $("voiceIndicator").classList.toggle("listening", active);
+    if (!voices.length) return null;
 
-    $("voiceIndicator").textContent =
-      active ? "LISTENING" : "READY";
+    const preferred = voiceNames[persona];
 
-    $("voiceTalk").textContent =
-      active ? "Stop" : "Talk";
+    for (const name of preferred) {
+      const exact = voices.find(voice =>
+        voice.name.toLowerCase() === name
+      );
 
-    $("orbTitle").textContent =
-      active ? "I'm Listening..." : "Your Voice Assistant";
+      if (exact) return exact;
 
-    $("orbSubtitle").textContent =
-      active
-        ? "Speak now, FIND IT is listening"
-        : "Tap the microphone to speak";
-  }
+      const matching = voices.find(voice =>
+        voice.name.toLowerCase().includes(name)
+      );
 
-  function getData() {
-    return homeAPI.getData();
-  }
-
-  function getRoom(roomId) {
-    for (const floor of getData().floors) {
-      const room = floor.rooms.find(r => r.id === roomId);
-
-      if (room) return {floor, room};
+      if (matching) return matching;
     }
 
     return null;
   }
 
-  function floorAliases(floor, index) {
-    const name = normalize(floor.name);
-    const aliases = [name];
+  function voiceStatus(text) {
+    const indicator = $("voiceIndicator");
 
-    if (/basement|podrum/.test(name)) {
-      aliases.push("podrum", "podrumi", "basement");
-    }
+    if (!indicator || listening) return;
 
-    if (/ground|perdhese/.test(name)) {
-      aliases.push(
-        "perdhese", "ne perdhese",
-        "ground floor", "kati zero"
+    indicator.textContent = text;
+  }
+
+  function updatePersonaUI() {
+    const select = $("finditPersonaSelect");
+
+    if (!select) return;
+
+    select.value = selectedPersona;
+
+    loadVoices();
+
+    const voice = findPersonaVoice(selectedPersona);
+
+    select.title = voice
+      ? selectedPersona === "sophie"
+        ? "Sophie · " + voice.name
+        : "Daniel · " + voice.name
+      : "No matching voice is installed";
+  }
+
+  function stopSpeaking() {
+    speechToken++;
+
+    if (!synthesis) return;
+
+    synthesis.cancel();
+    currentUtterance = null;
+  }
+
+  function speak(text) {
+    if (!sound || !synthesis) return;
+
+    stopSpeaking();
+
+    loadVoices();
+
+    const token = speechToken;
+
+    const selectedVoice = findPersonaVoice(
+      selectedPersona
+    );
+
+    if (!selectedVoice) {
+      voiceStatus("VOICE UNAVAILABLE");
+
+      bubble(
+        selectedPersona === "sophie"
+          ? "Sophie needs an English female voice installed in your browser."
+          : "Daniel needs an English male voice installed in your browser.",
+        "bot"
       );
-    }
 
-    if (/first|floor 1/.test(name)) {
-      aliases.push(
-        "first floor", "floor 1",
-        "kati i pare", "katin e pare"
-      );
-    }
-
-    if (/second|floor 2/.test(name)) {
-      aliases.push(
-        "second floor", "floor 2",
-        "kati i dyte", "katin e dyte"
-      );
-    }
-
-    if (/third|floor 3/.test(name)) {
-      aliases.push("third floor", "kati i trete");
-    }
-
-    aliases.push("floor " + index);
-
-    return [...new Set(aliases)];
-  }
-
-  function matchFloor(text) {
-    const query = " " + normalize(text) + " ";
-    const candidates = [];
-
-    getData().floors.forEach((floor, index) => {
-      floorAliases(floor, index).forEach(alias => {
-        if (alias && query.includes(" " + alias + " ")) {
-          candidates.push({floor, length: alias.length});
-        }
-      });
-    });
-
-    candidates.sort((a, b) => b.length - a.length);
-
-    return candidates.length ? candidates[0].floor : null;
-  }
-
-  const ROOM_ALIASES = {
-    bedroom: ["bedroom", "dhome gjumi"],
-    living: ["living room", "sallon", "salloni"],
-    kitchen: ["kitchen", "kuzhine", "kuzhina"],
-    bathroom: ["bathroom", "banje", "banja"],
-    garage: ["garage", "garazh", "garazhin"],
-    storage: ["storage", "depo"],
-    basement: ["basement", "podrum"],
-    office: ["office", "zyre", "zyra"],
-    game: ["game room", "dhoma e lojrave"],
-    gym: ["gym", "palester"],
-    laundry: ["laundry", "lavanderi"],
-    dining: ["dining room"]
-  };
-
-  function matchRoom(text, floorId = null) {
-    const query = " " + normalize(text) + " ";
-    const candidates = [];
-
-    getData().floors.forEach(floor => {
-      if (floorId && floor.id !== floorId) return;
-
-      floor.rooms.forEach(room => {
-        const aliases = [
-          normalize(room.name),
-          ...(ROOM_ALIASES[room.type] || [])
-        ];
-
-        aliases.forEach(alias => {
-          if (alias && query.includes(" " + alias + " ")) {
-            candidates.push({
-              floor,
-              room,
-              length: alias.length,
-              exact: alias === normalize(room.name)
-            });
-          }
-        });
-      });
-    });
-
-    candidates.sort((a, b) =>
-      Number(b.exact) - Number(a.exact) ||
-      b.length - a.length
-    );
-
-    if (!candidates.length) return null;
-
-    const best = candidates[0];
-
-    const ambiguous = candidates.some(candidate =>
-      candidate.room.id !== best.room.id &&
-      candidate.exact === best.exact &&
-      candidate.length === best.length
-    );
-
-    return ambiguous ? {ambiguous: true} : best;
-  }
-
-  function matchItem(text) {
-    const query = normalize(text);
-    const items = getData().items;
-
-    const exact = items.filter(item =>
-      query.includes(normalize(item.name))
-    );
-
-    exact.sort((a, b) => b.name.length - a.name.length);
-
-    if (exact.length) return exact[0];
-
-    const cleaned = query
-      .replace(
-        /\b(ku|i|e|kam|jane|eshte|where|is|are|my|the|find|gjej|me|te|mi|nje|send|item)\b/g,
-        " "
-      )
-      .replace(/\s+/g, " ")
-      .trim();
-
-    if (!cleaned || cleaned.length < 3) return null;
-
-    return items.find(item =>
-      normalize(item.name).includes(cleaned)
-    ) || null;
-  }
-
-  function extractPlace(text) {
-    const match =
-      /\b(mbi|brenda|nen|nën|poshte|poshtë|prane|pranë|afër|afer|under|inside|beside|behind|on the|next to)\b/i.exec(text);
-
-    if (!match) return "";
-
-    return text.slice(match.index)
-      .replace(/[.!?]+$/, "")
-      .trim()
-      .slice(0, 100);
-  }
-
-  function extractName(text) {
-    let name = String(text).trim();
-
-    name = name.replace(
-      /^(dua\s+(?:te|të|me)\s+)?(regjistro|regjistru|shto|ruaj|record|add|save)\s*/i,
-      ""
-    );
-
-    name = name.replace(
-      /^(nje\s+send|një\s+send|sendin|an?\s+item)\s*/i,
-      ""
-    );
-
-    name = name.split(
-      /\s+(?:ne\s+katin|në\s+katin|ne\s+perdhese|në\s+përdhesë|on\s+the\s+ground|on\s+the\s+first|mbi|brenda|under|inside)\b/i
-    )[0];
-
-    return name.trim().slice(0, 60);
-  }
-
-  function beginRegistration(raw, kind = "add") {
-    const data = getData();
-
-    if (!data.floors.some(f => f.rooms.length)) {
-      answer(tr(
-        "Së pari shto një dhomë te My Home.",
-        "Please add a room to My Home first."
-      ));
       return;
     }
 
-    draft = {
-      kind,
-      name: "",
-      itemId: null,
-      floorId: "",
-      roomId: "",
-      place: "",
-      step: ""
+    const utterance =
+      new SpeechSynthesisUtterance(String(text));
+
+    utterance.voice = selectedVoice;
+    utterance.lang = selectedVoice.lang;
+    utterance.volume = 1;
+    utterance.rate = selectedPersona === "daniel"
+      ? 0.94
+      : 1.02;
+    utterance.pitch = selectedPersona === "daniel"
+      ? 0.96
+      : 1.06;
+
+    currentUtterance = utterance;
+
+    utterance.onstart = () => {
+      if (token !== speechToken) return;
+      voiceStatus("SPEAKING");
     };
 
-    if (kind === "move") {
-      const item = matchItem(raw);
+    utterance.onend = () => {
+      if (token !== speechToken) return;
 
-      if (item) {
-        draft.name = item.name;
-        draft.itemId = item.id;
+      currentUtterance = null;
+      voiceStatus("READY");
+    };
+
+    utterance.onerror = event => {
+      if (token !== speechToken) return;
+
+      currentUtterance = null;
+
+      if (
+        event.error !== "canceled" &&
+        event.error !== "interrupted"
+      ) {
+        voiceStatus("VOICE ERROR");
+
+        console.warn(
+          "Speech synthesis error:",
+          event.error
+        );
       }
-    } else {
-      const name = extractName(raw);
-      const generic = [
-        "", "send", "sendin", "nje send",
-        "një send", "item", "a item", "an item"
-      ];
+    };
 
-      if (!generic.includes(normalize(name))) {
-        draft.name = name;
-      }
+    try {
+      synthesis.speak(utterance);
+    } catch (error) {
+      currentUtterance = null;
+      voiceStatus("VOICE ERROR");
+
+      console.error(error);
     }
-
-    const floor = matchFloor(raw);
-    if (floor) draft.floorId = floor.id;
-
-    const room = matchRoom(raw, draft.floorId || null);
-
-    if (room && !room.ambiguous) {
-      draft.roomId = room.room.id;
-      draft.floorId = room.floor.id;
-    }
-
-    draft.place = extractPlace(raw);
-    askNext();
   }
 
-  function askNext() {
-    if (!draft) return;
-
-    if (!draft.name) {
-      draft.step = "name";
-
-      answer(draft.kind === "move"
-        ? tr(
-          "Cilin send të regjistruar dëshiron ta zhvendosësh?",
-          "Which saved item would you like to move?"
-        )
-        : tr(
-          "Cilin send dëshiron ta regjistrosh?",
-          "Which item would you like to record?"
-        )
-      );
-      return;
-    }
-
-    if (!draft.floorId) {
-      draft.step = "floor";
-
-      answer(tr(
-        "Në cilin kat? " +
-          getData().floors.map(f => f.name).join(", "),
-        "Which floor? " +
-          getData().floors.map(f => f.name).join(", ")
-      ));
-      return;
-    }
-
-    if (!draft.roomId) {
-      draft.step = "room";
-
-      const floor = getData().floors.find(
-        f => f.id === draft.floorId
-      );
-
-      answer(tr(
-        "Në cilën dhomë? " +
-          floor.rooms.map(r => r.name).join(", "),
-        "Which room? " +
-          floor.rooms.map(r => r.name).join(", ")
-      ));
-      return;
-    }
-
-    if (!draft.place) {
-      draft.step = "place";
-
-      answer(tr(
-        "Ku saktësisht e ke lënë? Për shembull: mbi tavolinë.",
-        "Where exactly did you put it? For example: on the table."
-      ));
-      return;
-    }
-
-    const found = getRoom(draft.roomId);
-
-    if (!found) {
-      draft.roomId = "";
-      askNext();
-      return;
-    }
-
-    draft.step = "confirm";
-
-    answer(tr(
-      `Ta ruaj ${draft.name} në ${found.floor.name}, ${found.room.name}, ${draft.place}? Thuaj po ose jo.`,
-      `Save ${draft.name} in ${found.floor.name}, ${found.room.name}, ${draft.place}? Say yes or no.`
-    ));
+  function answer(text) {
+    bubble(text, "bot");
+    speak(text);
   }
 
-  function confirmDraft() {
-    if (!draft) return;
+  function createPersonaSelector() {
+    if ($("finditPersonaSelect")) return;
 
-    const found = getRoom(draft.roomId);
+    const language = $("voiceLanguage");
 
-    if (!found || found.floor.id !== draft.floorId) {
-      answer(tr(
-        "Dhoma nuk ekziston më.",
-        "The selected room no longer exists."
-      ));
+    if (!language) return;
 
-      draft = null;
+    const wrapper = document.createElement("div");
+
+    wrapper.style.display = "flex";
+    wrapper.style.alignItems = "center";
+    wrapper.style.gap = "9px";
+    wrapper.style.flexWrap = "wrap";
+    wrapper.style.minWidth = "0";
+
+    const label = document.createElement("label");
+    label.htmlFor = "finditPersonaSelect";
+    label.textContent = "🎭 Voice";
+
+    const select = document.createElement("select");
+    select.id = "finditPersonaSelect";
+
+    select.style.minWidth = "125px";
+    select.style.maxWidth = "100%";
+    select.style.padding = "9px 12px";
+    select.style.borderRadius = "10px";
+    select.style.border = "1px solid #9672d3";
+    select.style.background = "#302344";
+    select.style.color = "#ffffff";
+    select.style.cursor = "pointer";
+
+    select.innerHTML = `
+      <option value="sophie">👩 Sophie</option>
+      <option value="daniel">👨 Daniel</option>
+    `;
+
+    wrapper.append(label, select);
+
+    const parent = language.parentElement;
+
+    parent.appendChild(wrapper);
+
+    select.value = selectedPersona;
+
+    select.addEventListener("change", () => {
+      selectedPersona = select.value;
+
+      try {
+        localStorage.setItem(
+          VOICE_KEY,
+          selectedPersona
+        );
+      } catch {}
+
+      stopSpeaking();
+      updatePersonaUI();
+
+      const voice = findPersonaVoice(
+        selectedPersona
+      );
+
+      if (!voice) {
+        bubble(
+          selectedPersona === "sophie"
+            ? "No matching female English voice is available. Install one in Windows to enable Sophie."
+            : "No matching male English voice is available. Install one in Windows to enable Daniel.",
+          "bot"
+        );
+
+        voiceStatus("VOICE UNAVAILABLE");
+        return;
+      }
+
+      const welcome = selectedPersona === "sophie"
+        ? "Hello! I'm Sophie, your FIND IT assistant."
+        : "Hello! I'm Daniel, your FIND IT assistant.";
+
+      speak(welcome);
+    });
+  }
+
+  function initializeVoiceSystem() {
+    createPersonaSelector();
+    loadVoices();
+    updatePersonaUI();
+
+    if (!synthesis) {
+      voiceStatus("VOICE UNSUPPORTED");
       return;
     }
 
-    let result;
-
-    if (draft.kind === "move") {
-      result = homeAPI.updateItem(
-        draft.itemId,
-        draft.roomId,
-        draft.place
+    if (typeof synthesis.addEventListener === "function") {
+      synthesis.addEventListener(
+        "voiceschanged",
+        () => {
+          loadVoices();
+          updatePersonaUI();
+        }
       );
-    } else {
-      result = homeAPI.addItem({
-        name: draft.name,
-        roomId: draft.roomId,
-        place: draft.place
+    }
+  }
+
+  function matchedItem(query) {
+    let q = normal(query);
+
+    q = q
+      .replace(/celesat|celesi|celes|keys/g, "keys")
+      .replace(
+        /kufjet|degjueset|headphones/g,
+        "headphones"
+      )
+      .replace(/telefoni|phone/g, "phone");
+
+    let words = q.split(" ").filter(w =>
+      ![
+        "gjej",
+        "ku",
+        "eshte",
+        "jane",
+        "im",
+        "ime",
+        "i",
+        "e",
+        "te",
+        "ne",
+        "tek",
+        "my",
+        "find",
+        "where",
+        "is",
+        "are",
+        "the",
+        "me",
+        "please",
+        "item",
+        "send",
+        "sendin",
+        "mi",
+        "kam"
+      ].includes(w)
+    );
+
+    let items = app.getItems();
+
+    return items.find(item => {
+      let name = normal(item.name);
+
+      return q.includes(name) ||
+        words.some(w =>
+          w.length > 2 &&
+          name.split(" ").some(n =>
+            n.startsWith(w) || w.startsWith(n)
+          )
+        );
+    });
+  }
+
+  function locate(query) {
+    let item = matchedItem(query);
+
+    if (!item) {
+      answer(
+        sq()
+          ? "Nuk e gjeta këtë send në listën tënde."
+          : "I could not find that item in your collection."
+      );
+
+      return;
+    }
+
+    let place = app.displayLocation(
+      item,
+      app.getHome()
+    );
+
+    answer(
+      (sq()
+        ? "📍 " + item.name + " është regjistruar te "
+        : "📍 " + item.name + " was last saved at "
+      ) + place
+    );
+
+    $("findInput").value = item.name;
+    $("findButton").click();
+  }
+
+  function openAdd() {
+    $("openItemModal").click();
+
+    answer(
+      sq()
+        ? "Po e hap formularin. Zgjedh kategorinë, katin, dhomën dhe vendin."
+        : "Opening the form. Select category, floor, room and exact location."
+    );
+  }
+
+  function showHome() {
+    document
+      .getElementById("myhome-studio")
+      .scrollIntoView({
+        behavior: "smooth"
       });
-    }
 
-    if (result.ok) {
-      answer(tr(
-        `${draft.name} u ruajt me sukses në ${found.room.name}.`,
-        `${draft.name} was successfully saved in ${found.room.name}.`
-      ));
-    } else {
-      answer(tr(
-        "Ruajtja dështoi: " + result.error,
-        "Saving failed: " + result.error
-      ));
-    }
-
-    draft = null;
+    answer(
+      sq()
+        ? "Po ta shfaq shtëpinë."
+        : "Here is your home."
+    );
   }
 
-  function handleDraft(raw) {
-    const query = normalize(raw);
+  function parseQuickAdd(text) {
+    let s = normal(text);
 
-    if (/^(jo|no|anulo|cancel|ndalo|stop)$/.test(query)) {
-      draft = null;
+    let m = s.match(
+      /^(?:regjistro|shto|ruaj|add|save|record)\s+(.+?)\s+(?:ne|te|tek|in|at)\s+(.+)$/
+    );
 
-      answer(tr(
-        "Regjistrimi u anulua.",
-        "Registration cancelled."
-      ));
-      return;
-    }
-
-    if (draft.step === "confirm") {
-      if (/^(po|yes|ok|okay|ruaje|save|confirm|konfirmo|po ruaje)$/.test(query)) {
-        confirmDraft();
-        return;
-      }
-
-      if (/ndrysho|change|edit/.test(query)) {
-        if (/kat|floor/.test(query)) {
-          draft.floorId = "";
-          draft.roomId = "";
-        } else if (/dhom|room/.test(query)) {
-          draft.roomId = "";
-        } else if (/emr|name/.test(query)) {
-          draft.name = "";
-        } else {
-          draft.place = "";
+    return m
+      ? {
+          name: m[1],
+          place: m[2]
         }
-
-        askNext();
-        return;
-      }
-
-      answer(tr(
-        "Thuaj po, jo, ose ndrysho dhomën.",
-        "Say yes, no, or change room."
-      ));
-      return;
-    }
-
-    if (draft.step === "name") {
-      if (draft.kind === "move") {
-        const item = matchItem(raw);
-
-        if (!item) {
-          answer(tr(
-            "Nuk e gjeta sendin. Thuaje emrin e regjistruar.",
-            "I couldn't find that item. Say its saved name."
-          ));
-          return;
-        }
-
-        draft.name = item.name;
-        draft.itemId = item.id;
-      } else {
-        draft.name = raw.trim().slice(0, 60);
-      }
-
-    } else if (draft.step === "floor") {
-      const floor = matchFloor(raw);
-
-      if (!floor) {
-        answer(tr(
-          "Nuk e njoha katin. Thuaje emrin e plotë.",
-          "I didn't recognize that floor. Say its full name."
-        ));
-        return;
-      }
-
-      draft.floorId = floor.id;
-      draft.roomId = "";
-
-      const room = matchRoom(raw, draft.floorId);
-
-      if (room && !room.ambiguous) {
-        draft.roomId = room.room.id;
-      }
-
-    } else if (draft.step === "room") {
-      const room = matchRoom(raw, draft.floorId);
-
-      if (!room || room.ambiguous) {
-        answer(tr(
-          "Nuk e njoha dhomën. Thuaje emrin e plotë.",
-          "I didn't recognize that room. Say its full name."
-        ));
-        return;
-      }
-
-      draft.roomId = room.room.id;
-
-      const place = extractPlace(raw);
-      if (place) draft.place = place;
-
-    } else if (draft.step === "place") {
-      draft.place = raw.trim().slice(0, 100);
-    }
-
-    askNext();
+      : null;
   }
 
-  function command(raw) {
-    const text = normalize(raw);
+  function process(input) {
+    let text = String(input || "").trim();
+
     if (!text) return;
 
-    message(raw, "user");
+    bubble(text, "user");
 
-    if (draft) {
-      handleDraft(raw);
+    let value = normal(text);
+
+    if (
+      /^(shfaq shtepine|trego shtepine|show my home|show home)/
+        .test(value)
+    ) {
+      showHome();
       return;
     }
 
     if (
-      /\b(zhvendos|zhvendosa|leviza|move|moved|update)\b/.test(text)
+      /^(gjej|ku eshte|ku jane|ku i kam|find|where is|locate)/
+        .test(value)
     ) {
-      beginRegistration(raw, "move");
+      locate(text);
       return;
     }
 
     if (
-      /\b(regjistro|regjistru|shto|ruaj|record|add|save)\b/.test(text) &&
-      !/\b(room|dhome|dhoma|floor|kat)\b/.test(text)
+      /^(regjistro|shto|ruaj|add|save|record)/
+        .test(value)
     ) {
-      beginRegistration(raw);
-      return;
-    }
+      let quick = parseQuickAdd(text);
 
-    if (/\b(ku|where|find|gjej|kerko)\b/.test(text)) {
-      const item = matchItem(raw);
+      if (quick) {
+        let home = app.getHome();
 
-      if (!item) {
-        answer(tr(
-          "Nuk e gjeta këtë send në listë.",
-          "I couldn't find this item in your collection."
-        ));
-        return;
+        let room = home.floors
+          .flatMap(f => f.rooms)
+          .find(r =>
+            normal(quick.place).includes(
+              normal(r.name)
+            )
+          );
+
+        if (room) {
+          const ok = app.addItem({
+            name: quick.name,
+            category: "Other",
+            roomId: room.id,
+            place: quick.place,
+            notes: "Saved using voice assistant"
+          });
+
+          answer(
+            ok
+              ? sq()
+                ? "✅ Sendi u ruajt në të dyja faqet."
+                : "✅ Item saved in Dashboard and My Home."
+              : sq()
+                ? "Ruajtja dështoi."
+                : "Saving failed."
+          );
+
+          return;
+        }
       }
 
-      const location = getRoom(item.roomId);
-
-      if (!location) {
-        answer(tr(
-          "Dhoma e regjistruar nuk ekziston më.",
-          "The saved room no longer exists."
-        ));
-        return;
-      }
-
-      homeAPI.locateItem(item.id);
-
-      answer(tr(
-        `${item.name} është në ${location.floor.name}, në ${location.room.name}. Vendi: ${item.place}.`,
-        `${item.name} is on ${location.floor.name}, in ${location.room.name}. Location: ${item.place}.`
-      ));
+      openAdd();
       return;
     }
 
-    if (
-      /\b(shfaq|trego|show|open|hap)\b/.test(text) &&
-      /\b(katet|kate|floors|levels)\b/.test(text)
-    ) {
-      homeAPI.setMode("exploded");
-
-      answer(tr(
-        "Po i shfaq të gjitha katet.",
-        "Showing all floors."
-      ));
+    if (matchedItem(text)) {
+      locate(text);
       return;
     }
 
-    if (
-      /\b(exterior|outside|jashte|jashtme|fasade)\b/.test(text)
-    ) {
-      homeAPI.setMode("exterior");
-
-      answer(tr(
-        "Ja pamja e jashtme.",
-        "Here is the exterior view."
-      ));
-      return;
-    }
-
-    const floor = matchFloor(raw);
-
-    if (
-      floor &&
-      /\b(kat|floor|shfaq|show|hap|open)\b/.test(text)
-    ) {
-      homeAPI.selectFloor(floor.id);
-
-      answer(tr(
-        `Po e shfaq ${floor.name}.`,
-        `Showing ${floor.name}.`
-      ));
-      return;
-    }
-
-    if (/\b(help|ndihme|cfare mund|what can)\b/.test(text)) {
-      answer(tr(
-        "Mund të regjistrosh, kërkosh dhe zhvendosësh sende, si edhe të kontrollosh katet.",
-        "You can record, find and move items, and explore your home."
-      ));
-      return;
-    }
-
-    answer(tr(
-      "Provo: Regjistro një send, Ku i kam çelësat, ose Shfaq katet.",
-      "Try: Record an item, Where are my keys, or Show floors."
-    ));
+    answer(
+      sq()
+        ? "Mund të thuash: Gjej çelësat, Regjistro një send, ose Shfaq shtëpinë."
+        : "Try: Find my keys, Add item, or Show my home."
+    );
   }
 
-  function toggleMicrophone() {
-    if (!recognition) {
-      answer(tr(
-        "Mikrofoni nuk mbështetet. Mund të shkruash mesazhin.",
-        "Speech recognition is unavailable. You can type instead."
-      ));
+  $("voiceForm").onsubmit = e => {
+    e.preventDefault();
+
+    let text = $("voiceInput").value;
+
+    $("voiceInput").value = "";
+
+    process(text);
+  };
+
+  $("voiceAdd").onclick = openAdd;
+  $("voiceHome").onclick = showHome;
+
+  $("voiceFind").onclick = () => {
+    let query = $("voiceInput").value.trim();
+
+    if (query) {
+      $("voiceInput").value = "";
+      locate(query);
+    } else {
+      $("voiceInput").focus();
+
+      answer(
+        sq()
+          ? "Shkruaj emrin e sendit në kutinë e mesazhit."
+          : "Type an item name in the message field."
+      );
+    }
+  };
+
+  $("voiceSound").onclick = () => {
+    sound = !sound;
+
+    $("voiceSound").textContent = sound
+      ? "🔊 Sound On"
+      : "🔇 Sound Off";
+
+    if (!sound) {
+      stopSpeaking();
+    }
+  };
+
+  function setListening(on) {
+    listening = on;
+
+    $("voiceIndicator").textContent = on
+      ? "LISTENING"
+      : "READY";
+
+    $("orbTitle").textContent = on
+      ? "Listening..."
+      : "Your Voice Assistant";
+
+    $("orbSubtitle").textContent = on
+      ? "Speak now"
+      : "Tap the microphone to speak";
+  }
+
+  function toggleMic() {
+    if (!Recognition) {
+      answer(
+        sq()
+          ? "Mikrofoni nuk mbështetet në këtë shfletues. Shkruaj mesazhin."
+          : "Speech recognition is not supported. Type your message."
+      );
+
       return;
     }
 
-    if (listening) {
+    if (listening && recognition) {
       recognition.stop();
       return;
     }
 
-    if (window.speechSynthesis) {
-      speechSynthesis.cancel();
-    }
+    recognition = new Recognition();
 
     recognition.lang = $("voiceLanguage").value;
+    recognition.interimResults = false;
+    recognition.continuous = false;
+
+    recognition.onstart = () => {
+      setListening(true);
+    };
+
+    recognition.onend = () => {
+      setListening(false);
+    };
+
+    recognition.onerror = e => {
+      setListening(false);
+
+      answer(
+        (sq()
+          ? "Gabim me mikrofonin: "
+          : "Microphone error: "
+        ) + e.error
+      );
+    };
+
+    recognition.onresult = e => {
+      process(e.results[0][0].transcript);
+    };
 
     try {
       recognition.start();
     } catch {
       setListening(false);
-      message("Could not start the microphone.");
     }
   }
 
-  if (Recognition) {
-    recognition = new Recognition();
-    recognition.continuous = false;
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
+  $("voiceOrb").onclick = toggleMic;
+  $("voiceTalk").onclick = toggleMic;
 
-    recognition.onstart = () => setListening(true);
-    recognition.onend = () => setListening(false);
-
-    recognition.onresult = event => {
-      const result = event.results[0];
-
-      if (result && result[0]) {
-        command(result[0].transcript);
-      }
-    };
-
-    recognition.onerror = event => {
-      setListening(false);
-
-      const errors = {
-        "not-allowed": "Microphone permission denied.",
-        "audio-capture": "Microphone not detected.",
-        "no-speech": "No speech detected. Try again.",
-        "network": "Speech recognition service unavailable.",
-        "language-not-supported": "Language not supported."
-      };
-
-      message(
-        errors[event.error] ||
-        "Recognition error. Please type instead."
-      );
-    };
-
-  } else {
-    $("voiceTalk").disabled = true;
-    $("voiceOrb").disabled = true;
-    $("voiceIndicator").textContent = "TEXT MODE";
-  }
-
-  $("voiceTalk").onclick = toggleMicrophone;
-  $("voiceOrb").onclick = toggleMicrophone;
-
-  $("voiceSound").onclick = () => {
-    soundEnabled = !soundEnabled;
-
-    $("voiceSound").textContent =
-      soundEnabled ? "Sound On" : "Sound Off";
-
-    if (!soundEnabled && window.speechSynthesis) {
-      speechSynthesis.cancel();
-    }
-  };
-
-  $("voiceLanguage").onchange = () => {
-    if (recognition && listening) recognition.stop();
-
-    message(tr(
-      "Gjuha u ndryshua në shqip.",
-      "Language changed to English."
-    ));
-  };
-
-  $("voiceForm").onsubmit = event => {
-    event.preventDefault();
-
-    const input = $("voiceInput");
-    const text = input.value.trim();
-
-    if (!text) return;
-
-    input.value = "";
-    command(text);
-  };
-
-  $("voiceAdd").onclick = () => {
-    command("Regjistro një send");
-  };
-
-  $("voiceFind").onclick = () => {
-    $("voiceInput").value = isAlbanian()
-      ? "Ku i kam "
-      : "Where are my ";
-
-    $("voiceInput").focus();
-
-    answer(tr(
-      "Shkruaje emrin e sendit që po kërkon.",
-      "Type the name of the item you want to find."
-    ));
-  };
-
-  $("voiceHome").onclick = () => {
-    homeAPI.setMode("exploded");
-
-    answer(tr(
-      "Po i shfaq katet e shtëpisë.",
-      "Showing the floors of your home."
-    ));
-  };
-
-  setListening(false);
+  initializeVoiceSystem();
 });

@@ -1,95 +1,563 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FIND IT | Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>FIND IT | Never Lose Track</title>
+  <link rel="stylesheet" href="quick-voice.css">
+  <link rel="stylesheet" href="intro.css">
+  <link rel="stylesheet" href="responsive.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  >
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body data-page="home">
+
   <div id="site-header"></div>
 
-  <main>
-    <section class="hero container">
-      <div class="hero-copy">
-        <span class="eyebrow">YOUR SMART LOST & FOUND ASSISTANT</span>
-        <h1>Lost something? <em>Let's find it.</em></h1>
-        <p>Never forget where you left your belongings. Save locations, organize items and find them whenever you need.</p>
-        <div class="actions">
-          <a href="dashboard.html" class="btn primary">Open Dashboard</a>
-          <a href="how.html" class="btn outline">How It Works</a>
+  <main class="fi-home">
+
+    <section class="fi-hero">
+
+      <div class="fi-hero-copy">
+
+        <span class="fi-tag">
+          ✦ YOUR SMART LOST & FOUND ASSISTANT
+        </span>
+
+        <h1>
+          Lost something?
+          <span class="fi-gradient">
+            Let's FIND IT.
+          </span>
+        </h1>
+
+        <p class="fi-lead">
+          Say goodbye to searching everywhere.
+          FIND IT remembers where you last saved
+          your belongings, from your house keys
+          to your favorite headphones.
+        </p>
+
+        <div class="fi-buttons">
+
+          <a
+            href="dashboard.html"
+            class="fi-button fi-button-primary"
+          >
+            🚀 Open Dashboard
+          </a>
+
+          <a
+            href="how.html"
+            class="fi-button fi-button-secondary"
+          >
+            ✨ How It Works
+          </a>
+
         </div>
-      </div>
-      <div class="hero-photo">
-        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="Modern organized workspace">
-        <div class="photo-caption">Everything in its place.</div>
-      </div>
-    </section>
 
-    <section class="section container">
-      <div class="section-heading">
-        <span class="eyebrow">WHY FIND IT?</span>
-        <h2>Everything organized. <em>Nothing forgotten.</em></h2>
-        <p>Three simple steps make life easier.</p>
-      </div>
+        <div class="fi-trust">
 
-      <div class="cards three">
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=85" alt="Backpack">
-          <div class="card-body">
-            <span class="eyebrow">01 / COLLECT</span>
-            <h3>Add belongings</h3>
-            <p>Record the items you want to remember.</p>
-            <a href="dashboard.html">Open Dashboard</a>
-          </div>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=85" alt="Writing notes">
-          <div class="card-body">
-            <span class="eyebrow">02 / REMEMBER</span>
-            <h3>Save locations</h3>
-            <p>Remember the exact drawer, room or shelf.</p>
-            <a href="how.html">See How It Works</a>
-          </div>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9d?auto=format&fit=crop&w=800&q=85" alt="Smartphone">
-          <div class="card-body">
-            <span class="eyebrow">03 / SEARCH</span>
-            <h3>Find items</h3>
-            <p>Look up an item and see where you saved it.</p>
-            <a href="features.html">Explore Features</a>
-          </div>
-        </article>
-      </div>
-    </section>
+          <span>✓ Simple to use</span>
+          <span>✓ No GPS required</span>
+          <span>✓ Your personal collection</span>
 
-    <section class="section alt">
-      <div class="container feature-split">
-        <div class="feature-photo">
-          <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1100&q=85" alt="Modern home interior">
         </div>
-        <div>
-          <span class="eyebrow">MY HOME STUDIO</span>
-          <h2>Explore your home <em>in 3D.</em></h2>
-          <p>Create floors, furnish rooms, explore your garden and remember the locations of belongings.</p>
-          <a href="myhome.html" class="btn primary">Explore My Home</a>
-        </div>
+
       </div>
+
+      <div class="fi-hero-showcase">
+
+        <div class="fi-showcase-glow"></div>
+
+        <div class="fi-showcase-card">
+
+          <div class="fi-showcase-header">
+
+            <div class="fi-showcase-brand">
+
+              <span class="fi-showcase-logo">
+                🔍
+              </span>
+
+              <div>
+                <strong>FIND IT.</strong>
+                <small>Your Personal Dashboard</small>
+              </div>
+
+            </div>
+
+            <span class="fi-showcase-status">
+              ● ORGANIZED
+            </span>
+
+          </div>
+
+          <div class="fi-showcase-title">
+
+            <span>MY COLLECTION</span>
+
+            <strong>
+              Everything in its place.
+            </strong>
+
+          </div>
+
+          <div class="fi-showcase-search">
+
+            <span>🔍</span>
+
+            <span>
+              Search your belongings...
+            </span>
+
+            <span>⌘ K</span>
+
+          </div>
+
+          <div class="fi-showcase-items">
+
+            <div class="fi-showcase-item">
+
+              <div class="fi-showcase-item-icon">
+                🔑
+              </div>
+
+              <div>
+                <strong>House Keys</strong>
+                <small>
+                  📍 Living Room · Drawer
+                </small>
+              </div>
+
+              <span class="fi-showcase-check">
+                ✓
+              </span>
+
+            </div>
+
+            <div class="fi-showcase-item">
+
+              <div class="fi-showcase-item-icon">
+                🎧
+              </div>
+
+              <div>
+                <strong>Headphones</strong>
+                <small>
+                  📍 Bedroom · Desk
+                </small>
+              </div>
+
+              <span class="fi-showcase-check">
+                ✓
+              </span>
+
+            </div>
+
+            <div class="fi-showcase-item">
+
+              <div class="fi-showcase-item-icon">
+                🎒
+              </div>
+
+              <div>
+                <strong>Backpack</strong>
+                <small>
+                  📍 Hallway · Shelf
+                </small>
+              </div>
+
+              <span class="fi-showcase-check">
+                ✓
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="fi-showcase-footer">
+
+            <span>
+              ✨ 3 Items Organized
+            </span>
+
+            <a href="dashboard.html">
+              Open Dashboard ↗
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="fi-showcase-floating fi-showcase-floating-one">
+
+          <span>📍</span>
+
+          <div>
+            <strong>Location Saved!</strong>
+            <small>Just now</small>
+          </div>
+
+        </div>
+
+        <div class="fi-showcase-floating fi-showcase-floating-two">
+
+          <span>✅</span>
+
+          <div>
+            <strong>Item Found!</strong>
+            <small>House Keys</small>
+          </div>
+
+        </div>
+
+      </div>
+
     </section>
 
-    <section class="section container">
-      <div class="cta">
-        <span class="eyebrow">READY WHEN YOU ARE</span>
-        <h2>Life is too short to search for keys.</h2>
-        <p>Start organizing your world with FIND IT.</p>
-        <a href="dashboard.html" class="btn light">Get Started</a>
+    <section class="fi-section fi-section-dark">
+
+      <div class="fi-section-heading fi-reveal">
+
+        <span class="fi-tag">
+          HOW FIND IT WORKS
+        </span>
+
+        <h2>
+          Three steps.
+          <span class="fi-gradient">
+            Zero stress.
+          </span>
+        </h2>
+
+        <p>
+          A smarter way to keep your everyday
+          belongings organized.
+        </p>
+
       </div>
+
+      <div class="fi-steps">
+
+        <article class="fi-step fi-reveal">
+
+          <span class="fi-step-number">
+            01 / COLLECT
+          </span>
+
+          <div class="fi-step-icon">
+            🎒
+          </div>
+
+          <h3>Add Your Items</h3>
+
+          <p>
+            Save the things you use every day.
+            From your house keys to your
+            favorite headphones, everything
+            has its place.
+          </p>
+
+          <a href="dashboard.html">
+            Add Your First Item ↗
+          </a>
+
+        </article>
+
+        <article class="fi-step fi-reveal">
+
+          <span class="fi-step-number">
+            02 / REMEMBER
+          </span>
+
+          <div class="fi-step-icon">
+            📍
+          </div>
+
+          <h3>Save Their Location</h3>
+
+          <p>
+            Tell FIND IT exactly where
+            you left something.
+            Your living room, desk,
+            shelf or favorite drawer.
+          </p>
+
+          <a href="how.html">
+            Learn How It Works ↗
+          </a>
+
+        </article>
+
+        <article class="fi-step fi-reveal">
+
+          <span class="fi-step-number">
+            03 / DISCOVER
+          </span>
+
+          <div class="fi-step-icon">
+            🔍
+          </div>
+
+          <h3>Find It Instantly</h3>
+
+          <p>
+            Search for any recorded item
+            and discover its last saved
+            location in seconds.
+            No more unnecessary searching.
+          </p>
+
+          <a href="features.html">
+            Explore Features ↗
+          </a>
+
+        </article>
+
+      </div>
+
     </section>
+
+    <section class="fi-section">
+
+      <div class="fi-feature">
+
+        <div class="fi-feature-art fi-reveal">
+
+          <span class="fi-feature-house">
+            🏡
+          </span>
+
+          <span class="fi-mini-item fi-mini-one">
+            🔑
+          </span>
+
+          <span class="fi-mini-item fi-mini-two">
+            🛋️
+          </span>
+
+          <span class="fi-mini-item fi-mini-three">
+            📦
+          </span>
+
+          <span class="fi-mini-item fi-mini-four">
+            🪴
+          </span>
+
+        </div>
+
+        <div class="fi-reveal">
+
+          <span class="fi-tag">
+            WELCOME TO MY HOME
+          </span>
+
+          <h2>
+            Your home.
+            <span class="fi-gradient">
+              Your universe.
+            </span>
+          </h2>
+
+          <p>
+            Build your dream home in 3D.
+            Add floors, create rooms,
+            arrange furniture and explore
+            your personal space.
+          </p>
+
+          <p>
+            Remember which room contains
+            each item and use the voice
+            assistant to search and record
+            your belongings.
+          </p>
+
+          <div class="fi-buttons">
+
+            <a
+              href="myhome.html"
+              class="fi-button fi-button-primary"
+            >
+              🏡 Explore My Home
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="fi-section fi-section-dark">
+
+      <div class="fi-section-heading fi-reveal">
+
+        <span class="fi-tag">
+          YOUR SMART DASHBOARD
+        </span>
+
+        <h2>
+          Everything in place.
+          <span class="fi-gradient">
+            Nothing forgotten.
+          </span>
+        </h2>
+
+        <p>
+          A personal collection that makes
+          staying organized feel effortless.
+        </p>
+
+      </div>
+
+      <div class="fi-preview fi-reveal">
+
+        <div class="fi-preview-top">
+
+          <span>✦ MY COLLECTION</span>
+
+          <span>● ● ●</span>
+
+        </div>
+
+        <div class="fi-preview-search">
+          🔍 Search your belongings...
+        </div>
+
+        <div class="fi-preview-items">
+
+          <div class="fi-preview-item">
+
+            <span>🔑</span>
+
+            <div>
+
+              <strong>House Keys</strong>
+
+              <small>
+                Living Room · Drawer
+              </small>
+
+            </div>
+
+          </div>
+
+          <div class="fi-preview-item">
+
+            <span>🎧</span>
+
+            <div>
+
+              <strong>Headphones</strong>
+
+              <small>
+                Bedroom · Desk
+              </small>
+
+            </div>
+
+          </div>
+
+          <div class="fi-preview-item">
+
+            <span>📱</span>
+
+            <div>
+
+              <strong>Phone Charger</strong>
+
+              <small>
+                Office · Shelf
+              </small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="fi-buttons fi-center">
+
+          <a
+            href="dashboard.html"
+            class="fi-button fi-button-primary"
+          >
+            🚀 Launch Dashboard
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="fi-section">
+
+      <div class="fi-cta fi-reveal">
+
+        <span class="fi-cta-emoji">
+          🚀
+        </span>
+
+        <span class="fi-tag">
+          READY WHEN YOU ARE
+        </span>
+
+        <h2>
+          Life's too short
+          <span class="fi-gradient">
+            to search for keys.
+          </span>
+        </h2>
+
+        <p>
+          Start organizing your world today
+          and make remembering your
+          belongings easier than ever.
+        </p>
+
+        <div class="fi-buttons fi-center">
+
+          <a
+            href="dashboard.html"
+            class="fi-button fi-button-primary"
+          >
+            ✨ Get Started Now
+          </a>
+
+          <a
+            href="features.html"
+            class="fi-button fi-button-secondary"
+          >
+            🌟 Discover Features
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
   </main>
 
   <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="quick-voice.js"></script>
   <script src="main.js"></script>
+<script src="./quick-voice.js"></script>
+<script src="intro.js"></script>
 </body>
 </html>

@@ -1,0 +1,383 @@
+
+.fi-myhome {
+  width: 100%;
+  overflow-x: clip;
+}
+
+.fi-myhome .myhome-studio-section {
+  width: 100%;
+  max-width: 1900px;
+  margin-inline: auto;
+  padding-inline: clamp(12px, 2vw, 36px);
+}
+
+.home-studio-banner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 25px 0;
+  padding: 20px 25px;
+  border: 1px solid rgba(174, 135, 255, .25);
+  border-radius: 21px;
+  background: linear-gradient(
+    120deg,
+    rgba(113, 75, 190, .2),
+    rgba(24, 21, 45, .75)
+  );
+}
+
+.home-studio-banner-icon {
+  display: grid;
+  place-items: center;
+  width: 57px;
+  height: 57px;
+  flex: none;
+  border-radius: 18px;
+  background: rgba(165, 123, 255, .16);
+  font-size: 27px;
+}
+
+.home-studio-banner strong {
+  color: white;
+  font-size: 15px;
+  letter-spacing: .6px;
+}
+
+.home-studio-banner p {
+  margin: 5px 0 0;
+  color: #bcb4d0;
+  font-size: 13px;
+}
+
+.home-studio-live,
+.studio-view-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  margin-left: auto;
+  padding: 9px 13px;
+  border: 1px solid rgba(103, 235, 178, .24);
+  border-radius: 30px;
+  background: rgba(37, 132, 94, .12);
+  color: #93f1c5;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.home-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #5ae6a2;
+  box-shadow: 0 0 12px #5ae6a2;
+}
+
+.fi-myhome .home-layout {
+  display: grid;
+  grid-template-columns:
+    minmax(235px, 275px)
+    minmax(0, 1fr)
+    minmax(235px, 275px);
+  gap: 16px;
+  align-items: start;
+}
+
+.fi-myhome .home-sidebar {
+  min-width: 0;
+  padding: 19px;
+}
+
+.fi-myhome .home-main {
+  min-width: 0;
+  width: 100%;
+}
+
+.studio-panel-heading {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+.studio-panel-heading h2,
+.studio-panel-heading h3 {
+  margin: 0;
+  font-size: 19px;
+}
+
+.studio-panel-icon {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  flex: none;
+  border-radius: 11px;
+  background: rgba(160, 120, 245, .14);
+}
+
+.studio-subheading {
+  margin: 24px 0 12px;
+  font-size: 17px;
+}
+
+.fi-myhome .home-view-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.fi-myhome .home-view-heading h2 {
+  margin: 7px 0 5px;
+  font-size: clamp(23px, 2.5vw, 34px);
+}
+
+.fi-myhome .home-view-heading p {
+  margin: 0;
+  color: #ada7c7;
+  font-size: 13px;
+}
+
+.fi-myhome .view-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 15px;
+}
+
+.fi-myhome .view-btn {
+  padding: 11px 13px;
+  font-size: 12px;
+}
+
+.fi-myhome .upgraded-home-viewer {
+  position: relative;
+  width: 100%;
+  height: clamp(650px, 73vh, 920px);
+  min-height: 650px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .15);
+  border-radius: 25px;
+  background: linear-gradient(
+    180deg,
+    #83c9fa 0%,
+    #bce5ff 55%,
+    #86b962 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(169, 155, 255, .12),
+    0 30px 75px rgba(0, 0, 0, .35);
+}
+
+.fi-myhome #threeCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fi-myhome #threeCanvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+.fi-myhome #threeCanvas canvas:active {
+  cursor: grabbing;
+}
+
+.home-viewer-top {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.home-viewer-bottom {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.fi-myhome .viewer-tag,
+.fi-myhome .viewer-help {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  font-size: 10px;
+  letter-spacing: .5px;
+  background: rgba(18, 28, 43, .6);
+  backdrop-filter: blur(12px);
+}
+
+.viewer-quality,
+.viewer-exploded-hint {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 99px;
+  background: rgba(18, 28, 43, .6);
+  backdrop-filter: blur(12px);
+  color: white;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.home-viewer-description {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 16px;
+}
+
+.home-viewer-description span {
+  padding: 8px 11px;
+  border: 1px solid rgba(172, 147, 245, .2);
+  border-radius: 99px;
+  background: rgba(155, 125, 235, .09);
+  color: #cbc4e0;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.fi-myhome .home-stats {
+  margin-top: 18px;
+}
+
+.fi-myhome .home-stats strong {
+  font-size: 30px;
+}
+
+.fi-myhome .saved-items {
+  max-height: 550px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.fi-myhome .home-sidebar select,
+.fi-myhome .home-sidebar input,
+.fi-myhome .home-sidebar textarea {
+  min-width: 0;
+  width: 100%;
+}
+
+.fi-myhome .room-row {
+  display: block;
+  width: 100%;
+  margin-bottom: 9px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .05);
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.fi-myhome .room-row:hover {
+  background: rgba(155, 115, 245, .15);
+  border-color: rgba(183, 149, 255, .4);
+}
+
+.fi-myhome .myhome-voice-section {
+  max-width: 1500px;
+  margin: 100px auto 0;
+  padding: 0 20px;
+}
+
+.fi-myhome [hidden] {
+  display: none !important;
+}
+
+@media (max-width: 1399px) {
+  .fi-myhome .home-layout {
+    grid-template-columns:
+      minmax(210px, 245px)
+      minmax(0, 1fr)
+      minmax(210px, 245px);
+    gap: 12px;
+  }
+
+  .fi-myhome .upgraded-home-viewer {
+    height: 740px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .fi-myhome .home-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .fi-myhome .home-sidebar {
+    max-width: none;
+  }
+
+  .fi-myhome .upgraded-home-viewer {
+    height: min(85vh, 850px);
+    min-height: 550px;
+  }
+}
+
+@media (max-width: 650px) {
+  .home-studio-banner {
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+
+  .home-studio-live {
+    margin-left: 0;
+  }
+
+  .fi-myhome .upgraded-home-viewer {
+    height: 560px;
+    min-height: 500px;
+  }
+
+  .fi-myhome .home-view-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .studio-view-badge {
+    margin-left: 0;
+  }
+
+  .viewer-exploded-hint {
+    display: none;
+  }
+
+  .fi-myhome .view-btn {
+    flex: 1 1 auto;
+    padding: 10px 12px;
+  }
+
+  .fi-myhome .home-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .fi-myhome .home-stats strong {
+    font-size: 24px;
+  }
+}

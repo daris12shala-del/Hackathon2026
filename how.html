@@ -3,91 +3,378 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FIND IT | How It Works</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="quick-voice.css">
+  <link rel="stylesheet" href="responsive.css">
 </head>
 <body data-page="how">
+
   <div id="site-header"></div>
 
-  <main>
-    <section class="subhero container">
-      <span class="eyebrow">THREE SIMPLE STEPS</span>
-      <h1>How does <em>FIND IT work?</em></h1>
-      <p>Add an item, save its location and find it later.</p>
-    </section>
+  <main class="fi-how">
 
-    <section class="section container">
-      <div class="cards three">
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=85" alt="Backpack">
-          <div class="card-body">
-            <span class="eyebrow">STEP 01</span>
-            <h3>Add Your Item</h3>
-            <p>Enter its name, category and description in the Dashboard.</p>
-          </div>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=85" alt="Writing location notes">
-          <div class="card-body">
-            <span class="eyebrow">STEP 02</span>
-            <h3>Save Its Location</h3>
-            <p>Record the last place where you left the item.</p>
-          </div>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9d?auto=format&fit=crop&w=800&q=85" alt="Phone used to search">
-          <div class="card-body">
-            <span class="eyebrow">STEP 03</span>
-            <h3>Find It Anytime</h3>
-            <p>Search your saved belongings and read their locations.</p>
-          </div>
-        </article>
+    <section class="how-hero">
+
+      <div class="how-hero-copy">
+
+        <span class="fi-tag">
+          ✦ THREE SIMPLE STEPS
+        </span>
+
+        <h1>
+          How Does
+          <span class="fi-gradient">FIND IT Work?</span>
+        </h1>
+
+        <p class="fi-lead">
+          Add an item, save where you placed it and
+          discover its last recorded location
+          whenever you need it.
+        </p>
+
+        <div class="fi-buttons">
+          <a href="#how-steps" class="fi-button fi-button-primary">
+            🚀 Discover the Steps
+          </a>
+          <a href="dashboard.html" class="fi-button fi-button-secondary">
+            📦 Open Dashboard
+          </a>
+        </div>
+
       </div>
+
+      <div class="fx-hero fx-how-visual">
+
+        <div class="fx-glow"></div>
+
+        <div class="fx-process-card">
+
+          <div class="fx-process-header">
+            <span>✦ HOW FIND IT WORKS</span>
+            <strong>3 SIMPLE STEPS</strong>
+          </div>
+
+          <div class="fx-process-line">
+            <div class="fx-process-light"></div>
+          </div>
+
+          <div class="fx-process-step fx-process-step-1">
+
+            <div class="fx-process-icon">📦</div>
+
+            <div>
+              <small>STEP 01</small>
+              <strong>Add Your Item</strong>
+              <p>Record your belongings</p>
+            </div>
+
+            <span class="fx-process-check">✓</span>
+
+          </div>
+
+          <div class="fx-process-step fx-process-step-2">
+
+            <div class="fx-process-icon">📍</div>
+
+            <div>
+              <small>STEP 02</small>
+              <strong>Save Location</strong>
+              <p>Remember where you left it</p>
+            </div>
+
+            <span class="fx-process-check">✓</span>
+
+          </div>
+
+          <div class="fx-process-step fx-process-step-3">
+
+            <div class="fx-process-icon">🔍</div>
+
+            <div>
+              <small>STEP 03</small>
+              <strong>Find It Instantly</strong>
+              <p>Discover its saved place</p>
+            </div>
+
+            <span class="fx-process-check">✓</span>
+
+          </div>
+
+        </div>
+
+        <div class="fx-how-badge">
+          ✨ SIMPLE & SMART
+        </div>
+
+      </div>
+
     </section>
 
-    <section class="section alt">
-      <div class="container feature-split">
-        <div>
-          <span class="eyebrow">INTERACTIVE EXAMPLE</span>
-          <h2>Try saving <em>your first item.</em></h2>
-          <p>This example helps you understand how FIND IT remembers your belongings.</p>
-          <form id="howDemo" class="surface form-stack">
-            <label for="demoName">Item Name</label>
-            <input id="demoName" required value="House Keys">
-            <label for="demoPlace">Last Known Location</label>
-            <input id="demoPlace" required value="Living Room, Drawer">
-            <button class="btn primary" type="submit">Try Demo</button>
-            <p id="demoResult" class="feedback" role="status"></p>
+    <section class="fi-section fi-section-dark" id="how-steps">
+
+      <div class="fi-section-heading fi-reveal">
+
+        <span class="fi-tag">
+          HOW FIND IT WORKS
+        </span>
+
+        <h2>
+          Three steps.
+          <span class="fi-gradient">Zero stress.</span>
+        </h2>
+
+        <p>
+          Follow these simple steps to organize
+          your belongings.
+        </p>
+
+      </div>
+
+      <div class="fi-steps">
+
+        <article class="fi-step fi-reveal">
+
+          <span class="fi-step-number">STEP 01</span>
+
+          <div class="fi-step-icon">🎒</div>
+
+          <h3>Add Your Item</h3>
+
+          <p>
+            Open Dashboard, enter the item's name,
+            choose a category and add optional notes.
+          </p>
+
+          <a href="dashboard.html">
+            Add an Item ↗
+          </a>
+
+        </article>
+
+        <article class="fi-step fi-reveal">
+
+          <span class="fi-step-number">STEP 02</span>
+
+          <div class="fi-step-icon">📍</div>
+
+          <h3>Save Its Location</h3>
+
+          <p>
+            Record the last place where you left it,
+            such as a bedroom, desk or drawer.
+          </p>
+
+          <a href="dashboard.html">
+            Save a Location ↗
+          </a>
+
+        </article>
+
+        <article class="fi-step fi-reveal">
+
+          <span class="fi-step-number">STEP 03</span>
+
+          <div class="fi-step-icon">🔍</div>
+
+          <h3>Find It Anytime</h3>
+
+          <p>
+            Search your belongings and read the
+            location you saved earlier.
+          </p>
+
+          <a href="dashboard.html">
+            Search Your Collection ↗
+          </a>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <section class="fi-section" id="how-demo">
+
+      <div class="fi-section-heading fi-reveal">
+
+        <span class="fi-tag">INTERACTIVE EXAMPLE</span>
+
+        <h2>
+          Try saving
+          <span class="fi-gradient">your first item.</span>
+        </h2>
+
+        <p>
+          See how FIND IT remembers a location you provide.
+        </p>
+
+      </div>
+
+      <div class="fi-feature">
+
+        <div class="surface fi-reveal">
+
+          <h3>✍️ Try the Demo</h3>
+
+          <p class="muted">
+            This example demonstrates the basic idea.
+          </p>
+
+          <form id="howDemo" class="form-stack">
+
+            <label for="demoName">
+              Item Name
+            </label>
+
+            <input
+              id="demoName"
+              type="text"
+              required
+              maxlength="60"
+              value="House Keys"
+            >
+
+            <label for="demoPlace">
+              Last Known Location
+            </label>
+
+            <input
+              id="demoPlace"
+              type="text"
+              required
+              maxlength="100"
+              value="Living Room, Drawer"
+            >
+
+            <button type="submit" class="btn primary">
+              💾 Try Demo
+            </button>
+
+            <p
+              id="demoResult"
+              class="feedback"
+              role="status"
+            ></p>
+
           </form>
+
         </div>
-        <div class="feature-photo">
-          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1100&q=85" alt="Organized room">
+
+        <div class="fi-feature-art fi-reveal">
+
+          <span class="fi-feature-house">🏡</span>
+          <span class="fi-mini-item fi-mini-one">🔑</span>
+          <span class="fi-mini-item fi-mini-two">📍</span>
+          <span class="fi-mini-item fi-mini-three">🗄️</span>
+          <span class="fi-mini-item fi-mini-four">✅</span>
+
         </div>
+
       </div>
+
     </section>
 
-    <section class="section container">
-      <div class="section-heading">
-        <span class="eyebrow">COMMON QUESTIONS</span>
-        <h2>Everything you <em>need to know.</em></h2>
+    <section class="fi-section fi-section-dark">
+
+      <div class="fi-section-heading fi-reveal">
+
+        <span class="fi-tag">COMMON QUESTIONS</span>
+
+        <h2>
+          Everything you
+          <span class="fi-gradient">need to know.</span>
+        </h2>
+
       </div>
-      <details class="faq">
-        <summary>Does FIND IT use GPS?</summary>
-        <p>No. FIND IT remembers locations you manually register.</p>
-      </details>
-      <details class="faq">
-        <summary>Do my items remain after refreshing?</summary>
-        <p>Yes, if local storage is available and has not been cleared.</p>
-      </details>
-      <details class="faq">
-        <summary>Can I use Voice Assistant?</summary>
-        <p>Yes. Open My Home and talk to the assistant or type commands.</p>
-      </details>
+
+      <div class="faq-list">
+
+        <details class="faq fi-reveal">
+          <summary>📍 Does FIND IT use GPS?</summary>
+          <p>
+            No. FIND IT remembers locations that you
+            manually register. It does not track the
+            physical position of your belongings.
+          </p>
+        </details>
+
+        <details class="faq fi-reveal">
+          <summary>💾 Do my items remain after refreshing?</summary>
+          <p>
+            Yes, provided your browser supports local
+            storage and you have not cleared the saved data.
+          </p>
+        </details>
+
+        <details class="faq fi-reveal">
+          <summary>🎙️ Can I use the Voice Assistant?</summary>
+          <p>
+            Yes. Open My Home to type commands or use
+            speech recognition when your browser supports it.
+          </p>
+        </details>
+
+        <details class="faq fi-reveal">
+          <summary>🏡 Can I design my own home?</summary>
+          <p>
+            Yes. You can create and manage floors and rooms
+            using the My Home interface.
+          </p>
+        </details>
+
+        <details class="faq fi-reveal">
+          <summary>📦 Can I organize different kinds of items?</summary>
+          <p>
+            Yes. Dashboard provides categories and
+            search tools for your belongings.
+          </p>
+        </details>
+
+      </div>
+
     </section>
+
+    <section class="fi-section">
+
+      <div class="fi-cta fi-reveal">
+
+        <span class="fi-cta-emoji">🚀</span>
+        <span class="fi-tag">YOUR JOURNEY STARTS HERE</span>
+
+        <h2>
+          Less searching.
+          <span class="fi-gradient">More living.</span>
+        </h2>
+
+        <p>
+          Start organizing your belongings today.
+        </p>
+
+        <div class="fi-buttons fi-center">
+
+          <a href="dashboard.html" class="fi-button fi-button-primary">
+            ✨ Open Dashboard
+          </a>
+
+          <a href="features.html" class="fi-button fi-button-secondary">
+            Discover Features
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
   </main>
 
   <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="main.js"></script>
+<script src="quick-voice.js"></script>
 </body>
 </html>

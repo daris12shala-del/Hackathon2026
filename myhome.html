@@ -1,98 +1,448 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>FIND IT | My Home</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="quick-voice.css">
+  <link rel="stylesheet" href="responsive.css">
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link href="style.css" rel="stylesheet">
+  <link href="sync-pages.css" rel="stylesheet">
+  <link href="voice-gallery.css" rel="stylesheet">
+  <link href="home-upgrade.css" rel="stylesheet">
+
 </head>
+
 <body data-page="myhome">
+
   <div id="site-header"></div>
 
-  <main class="container home-page">
-    <section class="subhero compact">
-      <span class="eyebrow">MY PERSONAL 3D HOME</span>
-      <h1>My <em>Dream Home</em></h1>
-      <p>Describe your house, manage your rooms and remember your belongings.</p>
+  <main class="home-page fi-myhome">
+
+    <section class="myhome-hero">
+
+      <div class="myhome-hero-copy">
+
+        <span class="fi-tag">
+          ✦ YOUR PERSONAL 3D WORLD
+        </span>
+
+        <h1>
+          Build Your
+          <span class="fi-gradient">
+            Dream Home.
+          </span>
+        </h1>
+
+        <p class="fi-lead">
+          Design your dream house, explore every room,
+          organize your belongings and find anything
+          with your personal voice assistant.
+        </p>
+
+        <div class="fi-buttons">
+
+          <a
+            href="#myhome-studio"
+            class="fi-button fi-button-primary"
+          >
+            🏡 Explore My Home
+          </a>
+
+          <a
+            href="#voice-assistant"
+            class="fi-button fi-button-secondary"
+          >
+            🎙️ Voice Assistant
+          </a>
+
+        </div>
+
+        <div class="fi-trust">
+          <span>🏡 Detailed 3D Home</span>
+          <span>📦 Smart Item Tracking</span>
+          <span>🎙️ English Voice Assistant</span>
+        </div>
+
+      </div>
+
+      <div class="mh-hero-visual">
+
+        <div class="mh-back-glow"></div>
+
+        <div class="mh-background-circle mh-circle-one"></div>
+        <div class="mh-background-circle mh-circle-two"></div>
+
+        <div class="mh-house-wrapper">
+
+          <svg
+            class="mh-house-svg"
+            viewBox="0 0 560 430"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Modern house with natural white walls, a dark roof and blue windows"
+          >
+
+            <defs>
+
+              <linearGradient id="heroFront" x1="0" y1="0" x2="1" y2="1">
+                <stop stop-color="#fffdf6"/>
+                <stop offset="1" stop-color="#ddd8cf"/>
+              </linearGradient>
+
+              <linearGradient id="heroSide" x1="0" y1="0" x2="1" y2="1">
+                <stop stop-color="#deded5"/>
+                <stop offset="1" stop-color="#a4a5a0"/>
+              </linearGradient>
+
+              <linearGradient id="heroRoof" x1="0" y1="0" x2="1" y2="1">
+                <stop stop-color="#69737a"/>
+                <stop offset="1" stop-color="#323a40"/>
+              </linearGradient>
+
+              <linearGradient id="heroGlass" x1="0" y1="0" x2="1" y2="1">
+                <stop stop-color="#e1f5ff"/>
+                <stop offset="1" stop-color="#70b5d9"/>
+              </linearGradient>
+
+            </defs>
+
+            <ellipse
+              cx="290"
+              cy="380"
+              rx="177"
+              ry="26"
+              fill="#0a0b17"
+              opacity=".3"
+            />
+
+            <polygon
+              points="108,319 335,375 478,301 455,290 335,350 141,298"
+              fill="#b3ac9c"
+            />
+
+            <polygon
+              points="108,319 335,375 335,389 108,332"
+              fill="#888275"
+            />
+
+            <polygon
+              points="335,375 478,301 478,314 335,389"
+              fill="#66665c"
+            />
+
+            <polygon
+              points="140,178 335,228 335,353 140,303"
+              fill="url(#heroFront)"
+              stroke="#cbc5bb"
+              stroke-width="2"
+            />
+
+            <polygon
+              points="335,228 455,170 455,297 335,353"
+              fill="url(#heroSide)"
+              stroke="#b6b5ad"
+              stroke-width="2"
+            />
+
+            <polygon
+              points="164,219 225,234 225,287 164,271"
+              fill="#414a51"
+            />
+
+            <polygon
+              points="171,227 218,239 218,277 171,265"
+              fill="url(#heroGlass)"
+            />
+
+            <line
+              x1="194"
+              y1="232"
+              x2="194"
+              y2="271"
+              stroke="#45545e"
+              stroke-width="3"
+            />
+
+            <polygon
+              points="371,235 429,207 429,266 371,292"
+              fill="#424b52"
+            />
+
+            <polygon
+              points="379,241 421,220 421,260 379,280"
+              fill="url(#heroGlass)"
+            />
+
+            <line
+              x1="400"
+              y1="231"
+              x2="400"
+              y2="269"
+              stroke="#45545e"
+              stroke-width="3"
+            />
+
+            <polygon
+              points="249,256 293,267 293,341 249,330"
+              fill="#765034"
+            />
+
+            <polygon
+              points="255,264 287,272 287,334 255,325"
+              fill="#a77b51"
+            />
+
+            <circle cx="282" cy="304" r="3" fill="#ffe2a0"/>
+
+            <polygon
+              points="126,183 263,92 477,167 335,240"
+              fill="url(#heroRoof)"
+              stroke="#30353b"
+              stroke-width="3"
+              stroke-linejoin="round"
+            />
+
+            <polyline
+              points="126,183 335,240 477,167"
+              fill="none"
+              stroke="#272d32"
+              stroke-width="6"
+            />
+
+            <line
+              x1="177"
+              y1="197"
+              x2="308"
+              y2="109"
+              stroke="#a1aab1"
+              stroke-width="2"
+              opacity=".5"
+            />
+
+            <line
+              x1="235"
+              y1="213"
+              x2="365"
+              y2="127"
+              stroke="#a1aab1"
+              stroke-width="2"
+              opacity=".5"
+            />
+
+            <polygon
+              points="126,183 335,240 335,250 126,193"
+              fill="#292e33"
+            />
+
+            <polygon
+              points="335,240 477,167 477,177 335,250"
+              fill="#393e42"
+            />
+
+          </svg>
+
+        </div>
+
+        <div class="mh-floating-label mh-label-top">
+          <div class="mh-label-icon">🏡</div>
+
+          <div>
+            <strong>YOUR HOME</strong>
+            <small>Personal 3D Space</small>
+          </div>
+        </div>
+
+        <div class="mh-floating-label mh-label-right">
+          <div class="mh-label-icon">🛋️</div>
+
+          <div>
+            <strong>ROOM DESIGNER</strong>
+            <small>Create Your Rooms</small>
+          </div>
+        </div>
+
+        <div class="mh-floating-label mh-label-bottom">
+          <div class="mh-label-icon">📍</div>
+
+          <div>
+            <strong>SMART LOCATIONS</strong>
+            <small>Never Lose Track</small>
+          </div>
+        </div>
+
+        <div class="mh-hero-caption">
+          ✦ YOUR DREAM HOME STARTS HERE
+        </div>
+
+      </div>
+
     </section>
 
-    <section class="home-layout">
-      <aside class="surface home-sidebar">
-        <h2>Home Generator</h2>
-        <p class="muted">Describe your house in English.</p>
+    <section
+      class="myhome-studio-section"
+      id="myhome-studio"
+    >
 
-        <label for="homePrompt">Describe Your Dream Home</label>
-        <textarea id="homePrompt" rows="7"
-          placeholder="Create a house with 3 floors.
-Basement: 1 garage and 1 storage room.
-Ground Floor: 1 living room, 1 kitchen and 1 bathroom.
-First Floor: 3 bedrooms and 2 bathrooms."></textarea>
+      <div class="fi-section-heading fi-reveal">
 
-        <button id="generateHome" class="btn primary full">
-          Generate My Home
-        </button>
+        <span class="fi-tag">
+          ADVANCED HOME STUDIO
+        </span>
 
-        <div class="separator"></div>
-        <h3>Floor Manager</h3>
+        <h2>
+          Your Home.
+          <span class="fi-gradient">
+            Your World.
+          </span>
+        </h2>
 
-        <label for="floorSelect">Selected Floor</label>
-        <select id="floorSelect"></select>
+        <p>
+          Create your house, explore its rooms and
+          organize every item in one interactive space.
+        </p>
 
-        <div class="two">
-          <button id="addFloor" class="btn primary">Add Floor</button>
-          <button id="deleteFloor" class="btn outline">Delete Floor</button>
+      </div>
+
+      <div class="home-studio-banner">
+
+        <div class="home-studio-banner-icon">
+          🏡
         </div>
 
-        <label for="floorName">Rename Floor</label>
-        <div class="inline-field">
-          <input id="floorName" maxlength="45">
-          <button id="renameFloor" class="btn primary">Save</button>
+        <div>
+          <strong>FIND IT 3D HOME BUILDER</strong>
+
+          <p>
+            Explore the garden, inspect each floor,
+            rotate the camera and locate your belongings.
+          </p>
         </div>
 
-        <div class="separator"></div>
-        <h3>Room Designer</h3>
+        <span class="home-studio-live">
+          <span class="home-live-dot"></span>
+          3D ACTIVE
+        </span>
 
-        <label for="roomType">Room Type</label>
-        <select id="roomType">
-          <option value="bedroom">Bedroom</option>
-          <option value="living">Living Room</option>
-          <option value="kitchen">Kitchen</option>
-          <option value="bathroom">Bathroom</option>
-          <option value="garage">Garage</option>
-          <option value="storage">Storage</option>
-          <option value="basement">Basement</option>
-          <option value="office">Office</option>
-          <option value="game">Game Room</option>
-          <option value="gym">Gym</option>
-          <option value="laundry">Laundry</option>
-          <option value="dining">Dining Room</option>
-          <option value="custom">Custom Room</option>
-        </select>
+      </div>
 
-        <label for="newRoomName">Room Name</label>
-        <input id="newRoomName" maxlength="60"
-               placeholder="Ela's Bedroom">
+      <div class="home-layout">
 
-        <button id="addRoom" class="btn primary full">Add Room</button>
+        <aside class="surface home-sidebar">
 
-        <div id="roomList" class="room-list"></div>
+          <div class="studio-panel-heading">
+            <span class="studio-panel-icon">🏗️</span>
+            <h2>Home Generator</h2>
+          </div>
 
-        <div id="roomEditor" class="edit-box" hidden>
-          <h3>Edit Room</h3>
+          <p class="muted">
+            Describe your dream home and create its rooms.
+          </p>
 
-          <label for="editRoomName">New Room Name</label>
-          <input id="editRoomName" maxlength="60">
+          <label for="homePrompt">
+            Describe Your Home
+          </label>
 
-          <label for="editRoomType">Room Type</label>
-          <select id="editRoomType">
+          <textarea
+            id="homePrompt"
+            rows="6"
+            placeholder="Create a house with 2 floors.&#10;Ground Floor: 1 living room, 1 kitchen and 1 bathroom.&#10;First Floor: 2 bedrooms and 1 office."
+          ></textarea>
+
+          <button
+            id="generateHome"
+            class="btn primary full"
+            type="button"
+          >
+            ✨ Generate My Home
+          </button>
+
+          <div class="separator"></div>
+
+          <div class="studio-panel-heading">
+            <span class="studio-panel-icon">🏢</span>
+            <h3>Floor Manager</h3>
+          </div>
+
+          <label for="floorSelect">
+            Selected Floor
+          </label>
+
+          <select id="floorSelect"></select>
+
+          <div class="two">
+
+            <button
+              id="addFloor"
+              class="btn primary"
+              type="button"
+            >
+              ➕ Add Floor
+            </button>
+
+            <button
+              id="deleteFloor"
+              class="btn outline"
+              type="button"
+            >
+              🗑️ Delete
+            </button>
+
+          </div>
+
+          <label for="floorName">
+            Floor Name
+          </label>
+
+          <div class="inline-field">
+
+            <input
+              id="floorName"
+              maxlength="45"
+              placeholder="Ground Floor"
+            >
+
+            <button
+              id="renameFloor"
+              class="btn primary"
+              type="button"
+            >
+              Save
+            </button>
+
+          </div>
+
+          <div class="separator"></div>
+
+          <div class="studio-panel-heading">
+            <span class="studio-panel-icon">🛋️</span>
+            <h3>Room Designer</h3>
+          </div>
+
+          <label for="roomType">
+            Room Type
+          </label>
+
+          <select id="roomType">
             <option value="bedroom">Bedroom</option>
             <option value="living">Living Room</option>
             <option value="kitchen">Kitchen</option>
             <option value="bathroom">Bathroom</option>
             <option value="garage">Garage</option>
             <option value="storage">Storage</option>
-            <option value="basement">Basement</option>
             <option value="office">Office</option>
             <option value="game">Game Room</option>
             <option value="gym">Gym</option>
@@ -101,161 +451,702 @@ First Floor: 3 bedrooms and 2 bathrooms."></textarea>
             <option value="custom">Custom Room</option>
           </select>
 
-          <button id="applyRoom" class="btn primary full">
-            Save Changes
+          <label for="newRoomName">
+            Room Name
+          </label>
+
+          <input
+            id="newRoomName"
+            maxlength="60"
+            placeholder="My Bedroom"
+          >
+
+          <button
+            id="addRoom"
+            class="btn primary full"
+            type="button"
+          >
+            ➕ Add Room
           </button>
-          <button id="removeRoom" class="btn danger full">
-            Delete Room
-          </button>
-          <button id="closeRoomEditor" class="btn outline full">
-            Close
-          </button>
-        </div>
-      </aside>
 
-      <div class="home-main">
-        <div class="view-toolbar">
-          <button id="viewExterior" class="view-btn active">Exterior</button>
-          <button id="viewExploded" class="view-btn">Exploded Floors</button>
-          <button id="viewSelected" class="view-btn">Selected Floor</button>
-          <button id="viewTop" class="view-btn">Top View</button>
-          <button id="viewReset" class="view-btn">Reset Camera</button>
-        </div>
+          <h3 class="studio-subheading">
+            Your Rooms
+          </h3>
 
-        <div id="homeViewer" class="home-viewer">
-          <div id="threeCanvas"></div>
-          <span class="viewer-tag">INTERACTIVE 3D</span>
-          <span class="viewer-help">Drag to rotate · Scroll to zoom</span>
-        </div>
+          <div
+            id="roomList"
+            class="room-list"
+          ></div>
 
-        <div class="home-stats">
-          <div><strong id="floorCount">0</strong><span>Floors</span></div>
-          <div><strong id="roomCount">0</strong><span>Rooms</span></div>
-          <div><strong id="itemCount">0</strong><span>Items</span></div>
-        </div>
-      </div>
+          <div
+            id="roomEditor"
+            class="edit-box"
+            hidden
+          >
 
-      <aside class="surface home-sidebar">
-        <h2>Find My Stuff</h2>
-        <button id="openItemModal" class="btn primary full">
-          Record an Item
-        </button>
+            <h3>✏️ Edit Room</h3>
 
-        <label for="findInput">Search Items</label>
-        <div class="inline-field">
-          <input id="findInput" placeholder="House Keys">
-          <button id="findButton" class="btn primary">Find</button>
-        </div>
+            <label for="editRoomName">
+              Room Name
+            </label>
 
-        <h3>Saved Items</h3>
-        <div id="savedItems" class="saved-items"></div>
+            <input
+              id="editRoomName"
+              maxlength="60"
+            >
 
-        <div id="homeStatus" class="feedback" role="status">
-          Your 3D home is ready.
-        </div>
-      </aside>
-    </section>
+            <label for="editRoomType">
+              Room Type
+            </label>
 
-    <section class="voice-panel">
-      <div class="voice-header">
-        <div>
-          <span class="eyebrow">FIND IT / VOICE CONTROL</span>
-          <h2>Voice Assistant</h2>
-          <p>Talk to FIND IT or write a message.</p>
-        </div>
-        <span id="voiceIndicator" class="voice-indicator">READY</span>
-      </div>
+            <select id="editRoomType">
+              <option value="bedroom">Bedroom</option>
+              <option value="living">Living Room</option>
+              <option value="kitchen">Kitchen</option>
+              <option value="bathroom">Bathroom</option>
+              <option value="garage">Garage</option>
+              <option value="storage">Storage</option>
+              <option value="office">Office</option>
+              <option value="game">Game Room</option>
+              <option value="gym">Gym</option>
+              <option value="laundry">Laundry</option>
+              <option value="dining">Dining Room</option>
+              <option value="custom">Custom Room</option>
+            </select>
 
-      <div class="voice-controls">
-        <label for="voiceLanguage">Language</label>
-        <select id="voiceLanguage">
-          <option value="sq-AL">Shqip</option>
-          <option value="en-US">English</option>
-        </select>
-        <button id="voiceTalk" class="btn outline">Talk</button>
-        <button id="voiceSound" class="btn outline">Sound On</button>
-      </div>
-
-      <div class="voice-layout">
-        <div class="voice-conversation">
-          <h3>Conversation</h3>
-          <div id="voiceMessages" class="voice-messages" aria-live="polite">
-            <div class="voice-message bot">
-              Përshëndetje! Thuaj "Regjistro një send".
-            </div>
-          </div>
-
-          <form id="voiceForm" class="voice-form">
-            <input id="voiceInput" maxlength="200"
-                   placeholder="Shkruaj ose fol..." autocomplete="off">
-            <button class="btn primary" type="submit">Send</button>
-          </form>
-        </div>
-
-        <div id="voiceOrbArea" class="voice-orb-area">
-          <div class="voice-orb-wrap">
-            <span class="orb-ring ring-a"></span>
-            <span class="orb-ring ring-b"></span>
-            <button id="voiceOrb" class="voice-orb"
-                    type="button" aria-label="Start microphone">
-              <svg width="45" height="45" viewBox="0 0 24 24"
-                   fill="none" stroke="white" stroke-width="1.8"
-                   stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="2" width="6" height="12" rx="3"></rect>
-                <path d="M5 10a7 7 0 0 0 14 0"></path>
-                <path d="M12 17v5"></path>
-                <path d="M8 22h8"></path>
-              </svg>
+            <button
+              id="applyRoom"
+              class="btn primary full"
+              type="button"
+            >
+              💾 Save Changes
             </button>
+
+            <button
+              id="removeRoom"
+              class="btn danger full"
+              type="button"
+            >
+              🗑️ Delete Room
+            </button>
+
+            <button
+              id="closeRoomEditor"
+              class="btn outline full"
+              type="button"
+            >
+              Close
+            </button>
+
           </div>
 
-          <h3 id="orbTitle">Your Voice Assistant</h3>
-          <p id="orbSubtitle">Tap the microphone to speak</p>
-          <div class="voice-waves" aria-hidden="true">
-            <span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
+        </aside>
+
+        <section class="home-main">
+
+          <div class="home-view-heading">
+
+            <div>
+
+              <span class="fi-tag">
+                IMMERSIVE 3D EXPERIENCE
+              </span>
+
+              <h2>
+                Interactive
+                <span class="fi-gradient">
+                  3D Home
+                </span>
+              </h2>
+
+              <p>
+                Explore your home in a larger,
+                more immersive 3D environment.
+              </p>
+
+            </div>
+
+            <div class="studio-view-badge">
+              <span class="home-live-dot"></span>
+              LIVE 3D
+            </div>
+
           </div>
 
-          <div class="voice-shortcuts">
-            <button id="voiceAdd" type="button">+ Add Item</button>
-            <button id="voiceFind" type="button">Find Item</button>
-            <button id="voiceHome" type="button">Show My Home</button>
+          <div class="view-toolbar">
+
+            <button
+              id="viewExterior"
+              class="view-btn active"
+              type="button"
+            >
+              🏡 Exterior
+            </button>
+
+            <button
+              id="viewExploded"
+              class="view-btn"
+              type="button"
+            >
+              ✨ Exploded Floors
+            </button>
+
+            <button
+              id="viewSelected"
+              class="view-btn"
+              type="button"
+            >
+              📍 Selected Floor
+            </button>
+
+            <button
+              id="viewTop"
+              class="view-btn"
+              type="button"
+            >
+              🧭 Top View
+            </button>
+
+            <button
+              id="viewReset"
+              class="view-btn"
+              type="button"
+            >
+              🔄 Reset Camera
+            </button>
+
           </div>
-        </div>
+
+          <div
+            id="homeViewer"
+            class="home-viewer upgraded-home-viewer"
+          >
+
+            <div
+              id="threeCanvas"
+              aria-label="Interactive 3D house and garden"
+            ></div>
+
+            <div class="home-viewer-top">
+
+              <span class="viewer-tag">
+                ✦ FIND IT VIRTUAL HOME
+              </span>
+
+              <span class="viewer-quality">
+                3D SCENE
+              </span>
+
+            </div>
+
+            <div class="home-viewer-bottom">
+
+              <span class="viewer-help">
+                🖱️ Drag to rotate · Scroll to zoom
+              </span>
+
+              <span class="viewer-exploded-hint">
+                ✨ Exploded Floors separates your home
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="home-viewer-description">
+
+            <span>🌳 Outdoor Garden</span>
+            <span>🏊 Swimming Pool</span>
+            <span>🤸 Trampoline</span>
+            <span>🛋️ Furnished Rooms</span>
+            <span>✨ Animated Floors</span>
+
+          </div>
+
+          <div class="home-stats">
+
+            <div>
+              <span>🏢</span>
+              <strong id="floorCount">0</strong>
+              <span>Floors</span>
+            </div>
+
+            <div>
+              <span>🛋️</span>
+              <strong id="roomCount">0</strong>
+              <span>Rooms</span>
+            </div>
+
+            <div>
+              <span>📦</span>
+              <strong id="itemCount">0</strong>
+              <span>Saved Items</span>
+            </div>
+
+          </div>
+
+        </section>
+
+        <aside class="surface home-sidebar">
+
+          <div class="studio-panel-heading">
+            <span class="studio-panel-icon">🔍</span>
+            <h2>Find My Stuff</h2>
+          </div>
+
+          <p class="muted">
+            All belongings saved through Dashboard
+            or Voice Assistant appear here.
+          </p>
+
+          <button
+            id="openItemModal"
+            class="btn primary full"
+            type="button"
+          >
+            ➕ Record an Item
+          </button>
+
+          <div class="separator"></div>
+
+          <label for="findInput">
+            Search Your Items
+          </label>
+
+          <div class="inline-field">
+
+            <input
+              id="findInput"
+              type="search"
+              placeholder="Search for your keys..."
+            >
+
+            <button
+              id="findButton"
+              class="btn primary"
+              type="button"
+            >
+              Find
+            </button>
+
+          </div>
+
+          <h3 class="studio-subheading">
+            📦 Saved Items
+          </h3>
+
+          <div
+            id="savedItems"
+            class="saved-items"
+          ></div>
+
+          <p
+            id="homeStatus"
+            class="feedback"
+            role="status"
+          >
+            Your interactive home is ready.
+          </p>
+
+        </aside>
+
       </div>
+
     </section>
+
+    <section
+      id="voice-assistant"
+      class="myhome-voice-section"
+    >
+
+      <div class="fi-section-heading fi-reveal">
+
+        <span class="fi-tag">
+          FIND IT SMART ASSISTANT
+        </span>
+
+        <h2>
+          Meet Your
+          <span class="fi-gradient">
+            Voice Assistant.
+          </span>
+        </h2>
+
+        <p>
+          Find, save and organize your belongings
+          using natural English commands.
+        </p>
+
+      </div>
+
+      <div class="voice-panel">
+
+        <div class="voice-header">
+
+          <div>
+
+            <span class="fi-tag">
+              YOUR PERSONAL AI-STYLE ASSISTANT
+            </span>
+
+            <h2>
+              🎙️ FIND IT Assistant
+            </h2>
+
+            <p>
+              Your personal assistant for your home
+              and everything inside it.
+            </p>
+
+          </div>
+
+          <span
+            id="voiceIndicator"
+            class="voice-indicator"
+          >
+            READY
+          </span>
+
+        </div>
+
+        <div class="voice-controls">
+
+          <label for="voiceLanguage">
+            🌍 Language
+          </label>
+
+          <select id="voiceLanguage">
+            <option value="en-US">
+              English
+            </option>
+          </select>
+
+          <button
+            id="voiceTalk"
+            class="btn outline"
+            type="button"
+          >
+            🎙️ Talk
+          </button>
+
+          <button
+            id="voiceSound"
+            class="btn outline"
+            type="button"
+          >
+            🔊 Sound On
+          </button>
+
+        </div>
+
+        <section
+          class="voice-gallery"
+          aria-label="Voice Gallery"
+        >
+
+          <div class="voice-gallery-heading">
+
+            <div>
+
+              <span class="fi-tag">
+                ✦ MAKE FIND IT YOUR OWN
+              </span>
+
+              <h3>
+                🎤 Voice Gallery
+              </h3>
+
+              <p>
+                Preview different English voices and choose
+                the one that sounds best to you.
+              </p>
+
+            </div>
+
+            <span class="voice-gallery-pill">
+              4 VOICE PROFILES
+            </span>
+
+          </div>
+
+          <div
+            id="voiceGalleryGrid"
+            class="voice-gallery-grid"
+          ></div>
+
+          <div class="voice-gallery-bottom">
+
+            <span
+              id="voiceGalleryCurrent"
+              class="voice-gallery-current"
+            >
+              Selected: Automatic English voice
+            </span>
+
+            <button
+              id="voiceGalleryRefresh"
+              class="btn outline"
+              type="button"
+            >
+              🔄 Refresh Voices
+            </button>
+
+            <button
+              id="voiceGalleryReset"
+              class="btn outline"
+              type="button"
+            >
+              ↺ Automatic Voice
+            </button>
+
+          </div>
+
+          <p
+            id="voiceGalleryStatus"
+            class="voice-gallery-status"
+            role="status"
+            aria-live="polite"
+          ></p>
+
+          <p class="voice-gallery-note">
+            Voice availability depends on your browser
+            and operating system. Voice profiles are labels;
+            actual voice characteristics depend on the
+            voices installed on your device.
+          </p>
+
+        </section>
+
+        <div class="voice-layout">
+
+          <section class="voice-conversation">
+
+            <h3>
+              💬 Conversation
+            </h3>
+
+            <div
+              id="voiceMessages"
+              class="voice-messages"
+              aria-live="polite"
+            >
+
+              <div class="voice-message bot">
+                Hello! I'm FIND IT.
+                Ask me where your items are,
+                or tell me to save something new.
+              </div>
+
+            </div>
+
+            <form
+              id="voiceForm"
+              class="voice-form"
+            >
+
+              <input
+                id="voiceInput"
+                type="text"
+                maxlength="200"
+                autocomplete="off"
+                placeholder="Ask FIND IT anything about your home..."
+              >
+
+              <button
+                type="submit"
+                class="btn primary"
+              >
+                Send
+              </button>
+
+            </form>
+
+          </section>
+
+          <section
+            id="voiceOrbArea"
+            class="voice-orb-area"
+          >
+
+            <span class="fi-tag">
+              ✦ VOICE COMPANION
+            </span>
+
+            <div class="voice-orb-wrap">
+
+              <span class="orb-ring ring-a"></span>
+              <span class="orb-ring ring-b"></span>
+
+              <button
+                id="voiceOrb"
+                class="voice-orb"
+                type="button"
+                aria-label="Activate microphone"
+              >
+                🎙️
+              </button>
+
+            </div>
+
+            <h3 id="orbTitle">
+              Your Voice Assistant
+            </h3>
+
+            <p id="orbSubtitle">
+              Tap the microphone to speak
+            </p>
+
+            <div
+              class="voice-waves"
+              aria-hidden="true"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="voice-shortcuts">
+
+              <button
+                id="voiceAdd"
+                type="button"
+              >
+                ➕ Add Item
+              </button>
+
+              <button
+                id="voiceFind"
+                type="button"
+              >
+                🔍 Find Item
+              </button>
+
+              <button
+                id="voiceHome"
+                type="button"
+              >
+                🏡 Show My Home
+              </button>
+
+            </div>
+
+          </section>
+
+        </div>
+
+      </div>
+
+    </section>
+
   </main>
 
-  <div id="itemModal" class="modal-overlay" hidden>
-    <div class="modal-dialog">
+  <div
+    id="itemModal"
+    class="modal-overlay"
+    hidden
+  >
+
+    <div class="modal-dialog findit-item-dialog">
+
       <div class="modal-head">
-        <h2>Record an Item</h2>
-        <button id="closeItemModal" class="btn outline">Close</button>
+
+        <h2>
+          📦 Record an Item
+        </h2>
+
+        <button
+          id="closeItemModal"
+          class="btn outline"
+          type="button"
+        >
+          Close
+        </button>
+
       </div>
 
-      <form id="itemForm" class="form-stack">
-        <label for="itemName">Item Name</label>
-        <input id="itemName" required maxlength="60">
+      <form
+        id="itemForm"
+        class="form-stack"
+      >
 
-        <label for="itemFloor">Floor</label>
-        <select id="itemFloor" required></select>
+        <label for="itemName">
+          Item Name
+        </label>
 
-        <label for="itemRoom">Room</label>
-        <select id="itemRoom" required></select>
+        <input
+          id="itemName"
+          required
+          maxlength="60"
+          placeholder="House Keys"
+        >
 
-        <label for="itemPlace">Exact Location</label>
-        <input id="itemPlace" required maxlength="100"
-               placeholder="On the table">
+        <label for="itemCategory">
+          Category
+        </label>
 
-        <button class="btn primary" type="submit">Save Item</button>
+        <select id="itemCategory">
+          <option>Electronics</option>
+          <option>Keys</option>
+          <option>Clothing</option>
+          <option>Books</option>
+          <option>Accessories</option>
+          <option>Other</option>
+        </select>
+
+        <label for="itemFloor">
+          Floor
+        </label>
+
+        <select
+          id="itemFloor"
+          required
+        ></select>
+
+        <label for="itemRoom">
+          Room
+        </label>
+
+        <select
+          id="itemRoom"
+          required
+        ></select>
+
+        <label for="itemPlace">
+          Exact Location
+        </label>
+
+        <input
+          id="itemPlace"
+          required
+          maxlength="100"
+          placeholder="Inside the bedside drawer"
+        >
+
+        <button
+          class="btn primary full"
+          type="submit"
+        >
+          💾 Save Item
+        </button>
+
       </form>
+
     </div>
+
   </div>
 
   <div id="site-footer"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
   <script src="main.js"></script>
   <script src="voice.js"></script>
+<script src="quick-voice.js"></script>
 </body>
 </html>
